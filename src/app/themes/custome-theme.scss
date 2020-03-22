@@ -8,12 +8,16 @@
 @include mat-core();
 
 // Define the default theme (same as the example above).
-$admin-portal-primary: mat-palette($mat-yellow);
-$admin-portal-accent:  mat-palette($mat-yellow, A200, A100, A400);
+$admin-portal-primary: mat-palette($mat-grey, 800, 700, 900);
+$admin-portal-accent:  mat-palette($id8-yellow, A200, A100, A400);
 $admin-portal-warn: mat-palette($mat-red);
 
 $admin-portal-theme:   mat-light-theme($admin-portal-primary, $admin-portal-accent, $admin-portal-warn);
 
+
+@mixin custom-theme($theme) {
+  // add custome themes here
+}
 // Include the default theme styles.
 @include angular-material-theme($admin-portal-theme);
 

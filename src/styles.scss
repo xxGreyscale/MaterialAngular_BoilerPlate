@@ -1,6 +1,23 @@
 @import './app/themes/custome-theme';
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+@import './app/themes/quill.scss';
 
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button.btn {
+    padding: .2rem 1.2rem !important;
+    font-size: 16px;
+}
+
+button.btn.action {
+    padding: .2rem 1.8rem .2rem .8rem !important;
+    font-size: 16px;
+    text-align: left;
+    min-width: 6.6rem !important;
+
+}

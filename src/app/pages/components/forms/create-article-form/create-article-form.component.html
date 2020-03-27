@@ -1,0 +1,128 @@
+<form action="" [formGroup]="articleForm" (submit)="onSubmit()">
+  <mat-card>
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-7 ">
+    
+          <!-- title -->
+          <div class="form-group">
+              <label for="title"> Title: </label>
+              <mat-form-field appearance="outline" color="primary">
+                  <input matInput 
+                  formControlName="title"
+                  type="text"
+                  value="{{ formData.title }}" 
+                  placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
+                </mat-form-field>
+            </div>
+            
+            <!-- Subtitle -->
+            <div class="form-group">
+              <label for="subtitle"> Subtitle: </label>
+              <mat-form-field appearance="outline" color="primary">
+                  <textarea matInput placeholder="Article subtitle..."
+                  value="{{ formData.subtile }}" 
+                  formControlName="subtitle"
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="3"
+                  cdkAutosizeMaxRows="6"
+                  ></textarea>
+              </mat-form-field>
+            </div>     
+            
+            <!-- Category -->
+            <div class="form-group">
+              <label for="category"> Category: </label>
+              <mat-form-field appearance="outline" color="primary">
+                  <mat-select  
+                  formControlName="category"
+                  [(value)]="formData.category" 
+                  placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
+                  <mat-option *ngFor="let category of categories" value="{{category.value}}">
+                    {{ category.name }}
+                  </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>   
+            
+            <!-- Link -->
+            <div class="form-group">
+              <label for="link"> Link: </label>
+              <mat-form-field appearance="outline" color="primary">
+                  <input matInput 
+                  value="{{ formData.link }}" 
+                  formControlName="link"
+                  type="text" 
+                  placeholder="Ex. www.id8.space">
+                </mat-form-field>
+            </div>   
+            
+            
+             <!-- Content -->
+             <div class="form-group">
+              <label for="content"> Content: </label>
+             
+              <quill-editor [modules]="config" (onContentChanged)="onContentChange($event)" [sanitize]="true" id="ql_editor" [style]="editorStyle" formControlName='content'></quill-editor>
+            </div>     
+      </div>
+    
+      <div class="col-12 col-md-12 col-lg-5">
+          <img [src]="imageSrc || 'https://placehold.it/200'" class="rounded w-100 mt-2" alt="">
+          <mat-form-field appearance="outline">
+            <mat-label> Click to add Article Cover Photo </mat-label>
+            <ngx-mat-file-input (change)="onFileChange($event)" formControlName="coverphoto" placeholder="Click here to upload Article Coverphoto" ></ngx-mat-file-input>
+            <mat-icon matSuffix>folder</mat-icon>
+          </mat-form-field>
+    
+          <div class="form-group mt-3" style="margin-bottom: 0px !important;">
+              <label for="content"> Tags: </label>
+              <mat-form-field class="w-100" style="width: 100% !important;" appearance="outline">
+                  <mat-chip-list #chipList aria-label="tag selection">
+                    <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                             [removable]="removable" (removed)="remove(tag)" color="primary" selected>
+                      {{tag.name}}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Tags here"
+                           [matChipInputFor]="chipList"
+                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                           [matChipInputAddOnBlur]="addOnBlur"
+                           (matChipInputTokenEnd)="add($event)">
+                  </mat-chip-list>
+                </mat-form-field>
+            </div>   
+    
+            <div class="form-group">
+              <mat-checkbox 
+              formControlName='published'
+              color="primary" 
+              labelPosition='before'>
+              Published:
+            </mat-checkbox>
+    
+            </div>
+          
+      </div>
+    </div>
+    </mat-card>
+    
+    <div class="d-flex flex-row-reverse my-3 my-lg-4">
+      <div>
+        <button mat-button class="ml-lg-1 btn">
+        
+          Cancel
+      </button>
+      
+      <button mat-flat-button color="primary" class="ml-lg-2 btn">
+        
+        Add & Create Another
+      </button>
+      
+      <button mat-flat-button color="primary" class="ml-lg-2 btn">
+        
+        Create Article
+      </button>
+      </div>
+    </div>
+</form>
+

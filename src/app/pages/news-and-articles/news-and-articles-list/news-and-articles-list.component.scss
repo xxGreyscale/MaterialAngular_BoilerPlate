@@ -1,0 +1,21 @@
+.tiles {
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.tiles-item {
+    justify-content: center;
+    width: fit-content;
+}
+
+.tile-text {
+    display: block;
+    margin-top: .8rem;
+    max-width: 90%;
+}
+
+.category.tiles {
+    padding: 3.6rem;
+    width: fit-content;
+}

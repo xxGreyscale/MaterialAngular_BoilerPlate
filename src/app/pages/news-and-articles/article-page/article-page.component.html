@@ -1,0 +1,96 @@
+<section id='article_header' class="mt-3">
+    <div class="flex-container">
+        <div>
+            <h3>
+                Article Details
+            </h3>
+        </div>
+        <div>
+            <button mat-flat-button color="primary" class="mr-lg-1 btn action">
+                
+                <mat-icon>
+                    delete
+                </mat-icon>
+                Delete
+            </button>
+            <button mat-flat-button color="primary" class="ml-lg-1 btn action">
+                <mat-icon>
+                    edit-mode
+                </mat-icon>
+                Edit
+            </button>
+
+        </div>
+    </div>
+</section>
+
+<section id="article_details" class="mt-3">
+    <mat-card>
+
+        <div class="row">
+            <div class="col-7">
+
+                <!-- title -->
+                <div class="form-group">
+                    <label for="title"> Title: </label>
+                    <p>
+                        Lorem ipsum and some bullshiot
+                    </p>
+                  </div>
+                  
+                  <!-- Subtitle -->
+                  <div class="form-group">
+                    <label for="subtitle"> Subtitle: </label>
+                    <p>
+                        Lorem ipsum and some bullshiot
+                    </p>
+                  </div>     
+                  
+                  <!-- Category -->
+                  <div class="form-group">
+                    <label for="category"> Category: </label>
+                    <p>
+                        Lorem ipsum and some bullshiot
+                    </p>
+                  </div>   
+                  
+                  <!-- Link -->
+                  <div class="form-group">
+                    <label for="link"> Link: </label>
+                    <p>
+                        Lorem ipsum and some bullshiot
+                    </p>
+                  </div>   
+                  
+                  
+                   <!-- Content -->
+                   <div class="form-group">
+                    <label for="content"> Content: </label>
+                    <p>
+                        Lorem ipsum and some bullshiot
+                    </p>
+                  </div>     
+            </div>
+
+            <div class="col-5">
+                <img src="https://picsum.photos/200" class="rounded w-100 h-50 mt-2" alt="">
+
+                <div class="form-group mt-3">
+                    <label for="content"> Tags: </label>
+                    <mat-chip-list>
+                        <mat-chip color="primary" selected>Papadum</mat-chip>
+                        <mat-chip color="primary" selected>Naan</mat-chip>
+                        <mat-chip color="primary" selected>Dal</mat-chip>
+                      </mat-chip-list>
+                  </div>   
+
+                  <div class="form-group">
+                    <mat-checkbox color="primary" labelPosition='before'>Published:</mat-checkbox>
+
+                  </div>
+                
+            </div>
+        </div>
+    </mat-card>
+</section>
+

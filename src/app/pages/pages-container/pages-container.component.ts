@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pages-container.component.scss'],
 })
 export class PagesContainerComponent implements OnInit {
-  isExpanded = false;
+  isExpanded = true;
 
   constructor() { }
 

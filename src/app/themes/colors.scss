@@ -1,3 +1,8 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+
 $id8-yellow: (
     50: #fefce6,
     100: #fdf5c1,
@@ -19,9 +24,9 @@ $id8-yellow: (
     200: $black-87-opacity,
     300: $black-87-opacity,
     400: $black-87-opacity,
-    500: white,
-    600: white,
-    700: white,
+    500: #212121,
+    600: #212121,
+    700: #212121,
     800: $white-87-opacity,
     900: $white-87-opacity,
     A100: $black-87-opacity,
@@ -42,6 +47,7 @@ $shades-of-grey: (
     700: #616161,
     800: #424242,
     900: #212121,
+    // for now will try to settle on that
     contrast: (
       50: $black-87-opacity,
       100: $black-87-opacity,
@@ -52,7 +58,7 @@ $shades-of-grey: (
       600: white,
       700: white,
       800: $white-87-opacity,
-      900: $white-87-opacity,
+      900: #f7e031,
       A100: $black-87-opacity,
       A200: white,
       A400: white,

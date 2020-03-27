@@ -5,17 +5,15 @@
 
         <h4> Id8 Space</h4>
 </mat-toolbar>
-  <mat-sidenav-container class="example-container" autosize>
-    <mat-sidenav #sidenav fixedInViewport="true" fixedTopGap="60" mode="side" position="start" opened="true">
+  <mat-sidenav-container class="sidenav-container" autosize>
+    <mat-sidenav [class.widthOnExpand]="isExpanded" #sidenav fixedInViewport="true" fixedTopGap="60" mode="side" position="start" opened="true">
        <app-menu [isExpanded]="isExpanded"></app-menu>
     </mat-sidenav>
 
     <mat-sidenav-content>
 
         <div class="main_content">
-            <h3>
-                Overview
-            </h3>
+          <router-outlet></router-outlet>
         </div>
     
     

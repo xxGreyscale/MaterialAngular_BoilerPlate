@@ -8,7 +8,7 @@
 @include mat-core();
 
 // Define the default theme (same as the example above).
-$admin-portal-primary: mat-palette($mat-grey, 800, 700, 900);
+$admin-portal-primary: mat-palette($shades-of-grey, 900);
 $admin-portal-accent:  mat-palette($id8-yellow, A200, A100, A400);
 $admin-portal-warn: mat-palette($mat-red);
 

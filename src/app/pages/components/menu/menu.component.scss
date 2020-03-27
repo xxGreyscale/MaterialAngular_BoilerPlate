@@ -2,7 +2,54 @@
     margin: 0 5px;
   }
 
+  .menu-title {
+    flex: 1 0 auto;
+    font-weight: bold !important;
+  }
+
 
   .mat-icon {
-    font-size: 1.8rem !important;
+    font-size: 1.5rem !important;
+    margin: 0 0.5rem 0 0;
+    width: 1em;
+    text-align: center
   }
+
+  // ************ This is Override
+ .mat-list-item {
+   ::ng-deep {
+    .mat-list-item-content {
+      height: fit-content !important;
+      border-bottom: none !important;
+      line-height: 1.5rem;
+      padding: 0.75rem 1rem !important;
+    } 
+    .mat-list-icon {
+      padding: 0px !important; 
+    } 
+   }
+ }
+
+  .expandMenu {
+    // Overide deep classes within expandMenu
+    ::ng-deep {
+      .mat-list-text {
+        padding-left: 0px !important;
+      }
+      .mat-list-item-content {
+        padding: 0.75rem 1rem !important;
+      }
+
+    }
+    min-width: 156px;
+    font-size: 16px !important;
+    .mat-icon {
+      font-size: 1.5rem !important;
+    margin: 0 0.5rem 0 0;
+    width: 1em !important;
+    text-align: center;
+    }
+
+    
+  }
+

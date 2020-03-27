@@ -1,0 +1,28 @@
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mat-card {
+      padding: 2.8rem !important;
+  }
+  
+  .form-group {
+      margin-bottom: 2.2rem !important;
+  }
+
+  .form-group > label {
+      opacity: .7;
+      font-size: 16px !important;
+      margin-bottom: .4rem !important;
+  }
+
+
+.form-group > p {
+    font-size: 15px !important;
+}
+
+img {
+    object-fit: cover; /* Do not scale the image */
+  object-position: center; /* Center the image within the element */
+}

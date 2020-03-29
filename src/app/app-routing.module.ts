@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
+import { AuthGuardService } from './services/auth-guard.service';
 
 // ********* Change the paths for routing to your own pages
 const routes: Routes = [
@@ -10,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },

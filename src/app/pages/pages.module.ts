@@ -7,7 +7,16 @@ import { MaterialModule } from '../material.module';
 import { MenuComponent } from './components/menu/menu.component';
 import { ComponentsModule } from './components/components.module';
 import { NewsAndArticlesModule } from './news-and-articles/news-and-articles.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../services/token-interceptor';
 
+const providers = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+}
+];
 
 @NgModule({
   declarations: [PagesContainerComponent, MenuComponent, ],
@@ -17,7 +26,9 @@ import { NewsAndArticlesModule } from './news-and-articles/news-and-articles.mod
     MaterialModule,
     PagesRoutingModule,
     NewsAndArticlesModule,
-
+  ],
+  providers: [
+    ...providers
   ]
 })
 export class PagesModule { }

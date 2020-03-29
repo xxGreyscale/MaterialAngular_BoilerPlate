@@ -1,38 +1,42 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { StorageService } from './storage.service';
+
+export interface Payload {
+  token_type: 'string';
+  expires_in: 0;
+  access_token: 'string';
+  refresh_token: 'string';
+  code: 0;
+  message: 'string';
+  meta: {
+    accepted_tos: true
+  };
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  baseUri = 'https://api.y4chub.tech/api/';
   loggedIn: BehaviorSubject<boolean>;
-
+  payload: Observable<Payload>;
 
   /**
    *
    * @returns {Observable<T>}
    */
-  isLoggedIn(): Observable<boolean> {
+  isAuthenticated(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
 
 
-  getToken(): string {
-    return window.localStorage.jwtToken;
+  getToken() {
+    return localStorage.getItem('auth_app_token');
   }
 
   getUser() {
     return JSON.parse(localStorage.getItem('currentUser'));
-  }
-
-  saveToken(token: string) {
-    window.localStorage.jwtToken = token;
-  }
-
-  destroyToken() {
-    window.localStorage.removeItem('jwtToken');
   }
 
   buildHeaders(): HttpHeaders {
@@ -49,53 +53,16 @@ export class AuthService {
   }
 
 
-  login(email: string, password: string) {
-    const url = `${this.baseUri}`;
-
-    const headers = this.buildHeaders();
-
-    return new Promise((resolve, reject) => {
-      this.http
-        .post(url + '/login', {
-          email,
-          password
-        })
-        .subscribe(
-          (resp: any) => {
-            this.loggedIn.next(true);
-            this.saveToken(resp.token);
-            localStorage.setItem('currentUser', JSON.stringify(resp));
-            // this.toastr.success(
-            //   resp && resp.name
-            //     ? `Welcome ${resp.name}`
-            //     : ' Logged in!'
-            // );
-
-            resolve({ resp });
-
-          },
-          errorResp => {
-            console.log(errorResp);
-            this.loggedIn.next(undefined);
-            // errorResp.error
-            //   ? this.toastr.error(errorResp.error)
-            //   : this.toastr.error('An unknown error occured.');
-
-            reject(errorResp);
-          }
-        );
-    });
-
-  }
-
   logout() {
     this.loggedIn.next(false);
     localStorage.removeItem('currentUser');
-    this.destroyToken();
+    this.storage.clearTokens();
     }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private storage: StorageService) {
     const jwtToken = this.getToken();
     this.loggedIn = new BehaviorSubject<boolean>(jwtToken ? true : false);
   }
 }
+
+

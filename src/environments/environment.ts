@@ -4,7 +4,8 @@
 
 export const environment = {
   development: {
-    apiUrl: ''
+    apiUrl: '',
+    baseURL: 'http://ec2-34-252-217-108.eu-west-1.compute.amazonaws.com/api/',
   },
   production: false
 };

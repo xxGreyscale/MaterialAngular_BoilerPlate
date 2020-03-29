@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-channels-container',
+  selector: 'app-topics-container',
   template: `<router-outlet></router-outlet>`,
 })
-export class ChannelContainerComponent implements OnInit {
+export class TopicsContainerComponent implements OnInit {
 
   constructor() { }
 

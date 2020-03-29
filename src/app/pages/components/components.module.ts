@@ -4,7 +4,8 @@ import { MenuComponent } from './menu/menu.component';
 import { MaterialModule } from 'src/app/material.module';
 import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { QuillModule } from "ngx-quill";
+import { QuillModule } from 'ngx-quill';
+import { ChannelFormComponentComponent } from './forms/channel-form-component/channel-form-component.component';
 
 
 @NgModule({

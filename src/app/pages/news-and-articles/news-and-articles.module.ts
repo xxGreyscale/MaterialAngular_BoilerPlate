@@ -31,7 +31,6 @@ import { EditArticlePageComponent } from './edit-article-page/edit-article-page.
     FormsModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
-    ComponentsModule,
     MaterialModule,
     NewsAndArticlesRoutingModule
   ]

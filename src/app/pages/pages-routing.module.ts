@@ -14,9 +14,19 @@ const programAdminRoutes: Routes = [
           .then(m => m.NewsAndArticlesModule),
       },
       {
-        path: 'forums/channel',
-        loadChildren: () => import('./forums/channel/channel.module')
-          .then(m => m.ChannelModule),
+        path: 'forums',
+        children: [
+          {
+            path: 'channels',
+            loadChildren: () => import('./forums/channel/channel.module')
+              .then(m => m.ChannelModule),
+          },
+          {
+            path: 'topics',
+            loadChildren: () => import('./forums/topics/topics.module')
+              .then(m => m.TopicsModule),
+          },
+        ]
       },
     ]
   },

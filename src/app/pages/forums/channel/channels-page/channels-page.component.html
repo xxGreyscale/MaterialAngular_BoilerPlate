@@ -1,1 +1,25 @@
-<p>channels-page works!</p>
+
+<section id="channels_list">
+
+    <div class="row">
+        <div class="col">
+            <div class="d-flex">
+              <h3 class="d-flex align-items-center mb-lg-0">
+                  Channels
+              </h3>
+            <mat-form-field class="d-flex align-items-center search-input mx-lg-3" appearance="outline">
+              <input matInput placeholder="Ex. ium">
+              <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium"> -->
+            </mat-form-field>
+             
+            </div>
+        </div>
+
+        <div class="col text-right">
+            <button mat-flat-button color="primary" routerLink='/dashboard/forums/channels/create' class="mx-lg-3 my-lg-3 btn">Create Channel</button>
+            
+        </div>
+    </div>
+
+
+</section>

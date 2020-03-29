@@ -12,7 +12,7 @@ const childRoutes: Routes = [
     component: NewsAndArticlesListComponent,
   },
   {
-    path: 'article',
+    path: ':id',
     component: ArticlePageComponent,
   },
   {

@@ -69,13 +69,14 @@
 
     <div class="row">
         <div class="col">
-            <div class="d-inline-flex">
-                <h2 class="mb-0 my-3">
+            <div class="d-flex">
+                <h2 class="d-flex align-items-center mb-0">
                     News & Articles
                 </h2>
         
-                <mat-form-field appearance="outline" class="mx-lg-3">
-                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+                <mat-form-field appearance="outline" class="d-flex align-items-center search-input mx-lg-3">
+                    <input matInput placeholder="Ex. ium">
+                    <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium"> -->
                   </mat-form-field>
             </div>
         </div>

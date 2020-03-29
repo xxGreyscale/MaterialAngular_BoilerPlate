@@ -72,7 +72,7 @@ export class CreateArticleFormComponent {
 
   // ********* this section is for textarea configuration ************ //
 
-  @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
   onContentChange(e) {
     // restrict length first

@@ -21,3 +21,10 @@ button.btn.action {
     min-width: 6.6rem !important;
 
 }
+
+// Overriding the material input
+.search-input {
+    .mat-form-field-wrapper {
+        padding-bottom: 0px !important;
+    }
+}

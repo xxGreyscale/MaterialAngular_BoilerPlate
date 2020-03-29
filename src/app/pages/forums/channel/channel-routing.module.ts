@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ChannelContainerComponent } from './channel-container.component';
 import { ChannelsPageComponent } from './channels-page/channels-page.component';
+import { ChannelPageComponent } from './channel-page/channel-page.component';
+import { CreateChannelPageComponent } from './create-channel-page/create-channel-page.component';
 
 const adminPortalRoutes = [
   {
@@ -9,15 +11,25 @@ const adminPortalRoutes = [
     component: ChannelContainerComponent,
     children: [
       {
-        path: 'channels',
-        component: ChannelsPageComponent
+        path: '',
+        component: ChannelsPageComponent,
+      },
+      {
+        path: 'create',
+        component: CreateChannelPageComponent,
+      },
+      {
+        path: ':id',
+        component: ChannelPageComponent,
       }
     ]
   }
 ];
 
 // might change depending on the variations with program admin
-const routes: Routes = adminPortalRoutes;
+const routes: Routes = [
+  ...adminPortalRoutes
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

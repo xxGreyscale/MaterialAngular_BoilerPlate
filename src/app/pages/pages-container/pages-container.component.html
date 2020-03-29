@@ -7,7 +7,9 @@
 </mat-toolbar>
   <mat-sidenav-container class="sidenav-container" autosize>
     <mat-sidenav [class.widthOnExpand]="isExpanded" #sidenav fixedInViewport="true" fixedTopGap="60" mode="side" position="start" opened="true">
-       <app-menu [isExpanded]="isExpanded"></app-menu>
+        <mat-nav-list>
+          <app-menu [isExpanded]="isExpanded" *ngFor="let item of menuList" [item]="item"></app-menu>
+        </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>

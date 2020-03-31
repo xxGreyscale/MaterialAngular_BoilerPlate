@@ -22,6 +22,7 @@ import { QuillModule } from 'ngx-quill';
     CreateChannelPageComponent
   ],
   imports: [
+    CommonModule,
     MaterialFileInputModule,
     FormsModule,
     ReactiveFormsModule,

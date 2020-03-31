@@ -116,7 +116,7 @@ export class ChannelsPageComponent implements OnInit, AfterViewInit {
   }
 
   editArticle(resource) {
-    this.router.navigate([`/dashboard/news-and-articles/editing-article/${resource.id}`], resource.id);
+    this.router.navigate([`/dashboard/forums/channels/edit-channel/${resource.id}`], resource.id);
   }
 
 

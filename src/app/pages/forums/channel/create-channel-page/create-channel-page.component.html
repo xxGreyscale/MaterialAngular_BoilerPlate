@@ -1,8 +1,11 @@
 <section id='article_header' class="mt-3">
     <div class="flex-container">
         <div>
-            <h3>
-                Ceating a Channel
+            <h3 *ngIf="!channelId">
+                Creating a Channel
+            </h3>
+            <h3 *ngIf="channelId">
+                Updating Channel
             </h3>
         </div>
         
@@ -10,6 +13,6 @@
 </section>
 
 <section id="article_details" class="mt-3">
-    <app-channel-form-component [formData]="data"></app-channel-form-component>
+    <app-channel-form-component></app-channel-form-component>
 </section>
 

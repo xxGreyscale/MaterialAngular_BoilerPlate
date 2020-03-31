@@ -8,6 +8,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageService } from './services/storage.service';
 import { TokenInterceptor } from './services/token-interceptor';
+import { CommonModule } from '@angular/common';
 
 const providers = [
   RequestsService,
@@ -24,6 +25,7 @@ const providers = [
     AppComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

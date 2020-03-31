@@ -10,7 +10,6 @@
                     <input matInput 
                     formControlName="title"
                     type="text"
-                    value="{{ formData.title }}" 
                     placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
                   </mat-form-field>
               </div>
@@ -32,7 +31,6 @@
                 <mat-form-field appearance="outline" color="primary">
                     <textarea  matInput
                     formControlName="description"
-                    value="formData.description" 
                     placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
                     </textarea>
                   </mat-form-field>
@@ -43,7 +41,6 @@
                 <label for="locaction"> Locaction: </label>
                 <mat-form-field appearance="outline" color="primary">
                     <input matInput 
-                    value="{{ formData.locaction }}" 
                     formControlName="location"
                     type="text" 
                     placeholder="Ex. www.id8.space">
@@ -55,7 +52,6 @@
                 <label for="color"> Color Indicator: </label>
                 <mat-form-field appearance="outline" color="primary">
                     <input matInput 
-                    value="{{ formData.color }}" 
                     formControlName="color"
                     type="color" 
                     >
@@ -101,14 +97,19 @@
             Cancel
         </button>
         
-        <button mat-flat-button color="primary" (click)="addAnother()" class="ml-lg-2 btn">
+        <button mat-flat-button *ngIf="channelId" color="primary" (click)="addAnother()" class="ml-lg-2 btn">
           
           Add & Create Another
         </button>
         
         <button mat-flat-button color="primary" type="submit" class="ml-lg-2 btn">
+          <div *ngIf="!channelId">
+            Create Channel
+          </div>
+          <div *ngIf="channel">
+            Update Channel
+          </div>
           
-          Create Channel
         </button>
         </div>
       </div>

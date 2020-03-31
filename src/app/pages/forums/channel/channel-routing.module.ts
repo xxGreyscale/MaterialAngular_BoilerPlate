@@ -15,6 +15,10 @@ const adminPortalRoutes = [
         component: ChannelsPageComponent,
       },
       {
+        path: 'edit-channel/:id',
+        component: CreateChannelPageComponent,
+      },
+      {
         path: 'create',
         component: CreateChannelPageComponent,
       },

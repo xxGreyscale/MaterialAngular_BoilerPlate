@@ -7,7 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { AuthContainerComponent } from './auth-container.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RequestsService } from '../services/request-provider.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageService } from '../services/storage.service';
 
 const providers = [
@@ -20,7 +19,6 @@ const providers = [
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
     AuthRoutingModule,

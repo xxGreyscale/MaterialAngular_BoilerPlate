@@ -30,7 +30,13 @@ export class RequestsService {
       }
 
     }
+    console.log(`${env.baseURL}${this.endPoint}${params}`);
+    
     return this.httpClient.get(`${env.baseURL}${this.endPoint}${params}`);
+  }
+
+  getWithId(id) {
+    return this.httpClient.get(`${env.baseURL}${this.endPoint}` + '/' + id);
   }
 
   get() {

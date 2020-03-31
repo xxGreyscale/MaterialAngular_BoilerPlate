@@ -22,16 +22,17 @@ export class TokenInterceptor implements HttpInterceptor {
 
     constructor(public http: HttpClient,
                 private auth: AuthService,
-                private router: Router) { }
+                private router: Router) {
+                }
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.auth.isAuthenticated().subscribe(result => {
         if (result) {
-            const token = this.auth.getToken();
+            const token: any = this.auth.getToken();
             if (token) {
                 request = request.clone({
-                    headers: request.headers.set('Authorization', 'Bearer ' + token),
+                    headers: request.headers.set('Authorization', 'Bearer ' + token.value),
                 } );
             }
         }
@@ -43,7 +44,7 @@ export class TokenInterceptor implements HttpInterceptor {
                 if (error.message === 'Token is exp') {
                     // TODO: Token refreshing
 
-                    
+
                 } else {
                     // Logout from account or do some other stuff
                     // return this.handle401Error(request, next);

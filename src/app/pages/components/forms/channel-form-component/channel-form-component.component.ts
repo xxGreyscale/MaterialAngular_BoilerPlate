@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, NgZone, Input } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from 'rxjs/operators';
+import { RequestsService } from 'src/app/services/request-provider.service';
 
 @Component({
   selector: 'app-channel-form-component',
@@ -31,7 +32,7 @@ export class ChannelFormComponentComponent implements OnInit {
         .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
-  constructor(private _ngZone: NgZone, private fb: FormBuilder) {
+  constructor(private _ngZone: NgZone, private fb: FormBuilder, private requestService: RequestsService) {
     this.channelForm = this.fb.group({
       title: ['', Validators.required],
       subtitle: ['', Validators.required],
@@ -47,8 +48,17 @@ export class ChannelFormComponentComponent implements OnInit {
   }
 
 
-  onSubmit(){
+  onSubmit() {
+    const payload = {
+      title: this.channelForm.get('title').value,
+      subtitle: this.channelForm.get('subtitle').value,
+      description: this.channelForm.get('description').value,
+      location: this.channelForm.get('location').value,
+      color: this.channelForm.get('color').value,
+      order: 0
+    };
 
+    this.createChannel(payload);
   }
 
   // ********* Chaning of image as user input
@@ -59,6 +69,17 @@ export class ChannelFormComponentComponent implements OnInit {
       this.imageSrc = e.target.result;
     };
     reader.readAsDataURL(fileInput.target.files[0]);
+  }
+
+  createChannel(payload: any) {
+    this.requestService.endPoint = 'forums/channels';
+    this.requestService.create(payload).subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  addAnother() {
+
   }
 
 }

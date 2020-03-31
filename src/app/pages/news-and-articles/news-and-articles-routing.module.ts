@@ -12,15 +12,15 @@ const childRoutes: Routes = [
     component: NewsAndArticlesListComponent,
   },
   {
-    path: ':id',
-    component: ArticlePageComponent,
-  },
-  {
-    path: 'adding-article',
+    path: 'create',
     component: CreateArticlePageComponent,
   },
   {
-    path: 'editing-article',
+    path: 'article/:id',
+    component: ArticlePageComponent,
+  },
+  {
+    path: 'editing-article/:id',
     component: EditArticlePageComponent,
   }
 ];

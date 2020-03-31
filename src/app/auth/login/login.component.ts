@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { RequestsService } from 'src/app/services/request-provider.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
               private request: RequestsService,
               private storageService: StorageService,
               public router: Router,
+              private auth: AuthService,
               private route: ActivatedRoute,
               ) {
     this.loginForm = this.fb.group({
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
     this.request.endPoint = `login`;
     this.request.create(query).subscribe(response => {
       this.saveToken(response);
+      this.auth.loggedIn.next(true);
       this.getUserAndChatToken();
     }, error => {
       this.showErrors(error);

@@ -27,12 +27,16 @@ export class AuthService {
    * @returns {Observable<T>}
    */
   isAuthenticated(): Observable<boolean> {
-    return this.loggedIn.asObservable();
+    if (this.getToken) {
+      this.loggedIn.next(true);
+      return this.loggedIn.asObservable();
+    }
   }
 
 
   getToken() {
-    return localStorage.getItem('auth_app_token');
+    const tokenObject = JSON.parse(localStorage.getItem('auth_app_token'));
+    return tokenObject;
   }
 
   getUser() {

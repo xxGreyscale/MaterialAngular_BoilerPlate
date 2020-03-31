@@ -28,7 +28,6 @@ const providers = [
     NewsAndArticlesModule,
   ],
   providers: [
-    ...providers
   ]
 })
 export class PagesModule { }

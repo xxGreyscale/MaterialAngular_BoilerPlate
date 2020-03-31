@@ -13,6 +13,8 @@ import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { EditArticlePageComponent } from './edit-article-page/edit-article-page.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from 'src/app/services/token-interceptor';
 
 
 
@@ -33,6 +35,6 @@ import { EditArticlePageComponent } from './edit-article-page/edit-article-page.
     QuillModule.forRoot(),
     MaterialModule,
     NewsAndArticlesRoutingModule
-  ]
+  ],
 })
 export class NewsAndArticlesModule { }

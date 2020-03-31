@@ -16,10 +16,13 @@ const adminForumTopicsRoutes = [
       {
         path: 'create',
         component: CreateTopicPageComponent,
+      },
+      {
+        path: 'create/:id',
+        component: CreateTopicPageComponent,
       }
     ]
   },
-  
 ];
 
 const routes: Routes = [

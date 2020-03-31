@@ -10,17 +10,15 @@
                   <input matInput 
                   formControlName="title"
                   type="text"
-                  value="{{ formData.title }}" 
                   placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
                 </mat-form-field>
             </div>
-            
+             
             <!-- Subtitle -->
             <div class="form-group">
               <label for="subtitle"> Subtitle: </label>
               <mat-form-field appearance="outline" color="primary">
                   <textarea matInput placeholder="Article subtitle..."
-                  value="{{ formData.subtile }}" 
                   formControlName="subtitle"
                   cdkTextareaAutosize
                   #autosize="cdkTextareaAutosize"
@@ -36,7 +34,6 @@
               <mat-form-field appearance="outline" color="primary">
                   <mat-select  
                   formControlName="category"
-                  [(value)]="formData.category" 
                   placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
                   <mat-option *ngFor="let category of categories" value="{{category.value}}">
                     {{ category.name }}
@@ -50,7 +47,6 @@
               <label for="link"> Link: </label>
               <mat-form-field appearance="outline" color="primary">
                   <input matInput 
-                  value="{{ formData.link }}" 
                   formControlName="link"
                   type="text" 
                   placeholder="Ex. www.id8.space">
@@ -80,7 +76,7 @@
                   <mat-chip-list #chipList aria-label="tag selection">
                     <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
                              [removable]="removable" (removed)="remove(tag)" color="primary" selected>
-                      {{tag.name}}
+                      {{tag}}
                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                     </mat-chip>
                     <input placeholder="Tags here"
@@ -113,14 +109,21 @@
           Cancel
       </button>
       
-      <button mat-flat-button color="primary" class="ml-lg-2 btn">
+      <button *ngIf="!articleId" mat-flat-button color="primary" (click)="onAddAnother()" class="ml-lg-2 btn">
         
-        Add & Create Another
+        <div >
+          Add & Create Another
+        </div>
       </button>
       
-      <button mat-flat-button color="primary" class="ml-lg-2 btn">
+      <button mat-flat-button color="primary" type="submit" class="ml-lg-2 btn">
         
-        Create Article
+        <div *ngIf="articleId">
+          Update Article
+        </div>
+        <div *ngIf="!articleId">
+          Create Article
+        </div>
       </button>
       </div>
     </div>

@@ -5,14 +5,20 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RequestsService } from './services/request-provider.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageService } from './services/storage.service';
+import { TokenInterceptor } from './services/token-interceptor';
 
 const providers = [
   RequestsService,
   AuthGuardService,
-  StorageService
-]
+  StorageService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+}
+];
 @NgModule({
   declarations: [
     AppComponent,

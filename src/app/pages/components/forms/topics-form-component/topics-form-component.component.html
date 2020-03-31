@@ -1,30 +1,18 @@
-<form action="" [formGroup]="channelForm" (submit)="onSubmit()">
+<form action="" [formGroup]="topicForm" (submit)="onSubmit()">
       <div class="row">
         <div class="col-12 col-md-12 col-lg-9 ">
           <mat-card>
       
-            <!-- title -->
+            <!-- Name -->
             <div class="form-group">
-                <label for="title"> Title: </label>
+                <label for="name"> Name: </label>
                 <mat-form-field appearance="outline" color="primary">
                     <input matInput 
-                    formControlName="title"
+                    formControlName="name"
                     type="text"
-                    value="{{ formData.title }}" 
                     placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
                   </mat-form-field>
               </div>
-              
-              <!-- Subtitle -->
-              <div class="form-group">
-                <label for="subtitle"> Subtitle: </label>
-                <mat-form-field appearance="outline" color="primary">
-                    <input matInput placeholder="Channel subtitle..."
-                    formControlName="subtitle"
-                    type="text"
-                    placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
-                </mat-form-field>
-              </div>     
               
               <!-- Description -->
               <div class="form-group">
@@ -32,7 +20,6 @@
                 <mat-form-field appearance="outline" color="primary">
                     <textarea  matInput
                     formControlName="description"
-                    value="formData.description" 
                     cdkTextareaAutosize
                   #autosize="cdkTextareaAutosize"
                   cdkAutosizeMinRows="3"
@@ -42,56 +29,43 @@
                   </mat-form-field>
               </div>   
               
-              <!-- locaction -->
-              <div class="form-group">
-                <label for="locaction"> Locaction: </label>
-                <mat-form-field appearance="outline" color="primary">
-                    <input matInput 
-                    value="{{ formData.locaction }}" 
-                    formControlName="location"
-                    type="text" 
-                    placeholder="Ex. www.id8.space">
-                  </mat-form-field>
-              </div> 
-              
               <!-- Color -->
               <div class="form-group">
                 <label for="color"> Color Indicator: </label>
                 <mat-form-field appearance="outline" color="primary">
                     <input matInput 
-                    value="{{ formData.color }}" 
                     formControlName="color"
                     type="color" 
                     >
                   </mat-form-field>
               </div> 
+              <div class="form-group">
+                <label for="color"> Cover photo: </label>
+              <img [src]="imageSrc || 'https://placehold.it/200'" class="rounded w-75 mt-2" alt="">
+              <mat-form-field appearance="outline">
+                <mat-label> Click to add Article Cover Photo </mat-label>
+                <ngx-mat-file-input matInput (change)="onFileChange($event)" formControlName="coverphoto" placeholder="Click here to upload Article Coverphoto" ></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+              </mat-form-field>
+            </div>
+        
               
 
-              <!-- Is the channel private? -->
-              <div class="form-group">
-                <mat-checkbox 
-                formControlName='private'
-                color="primary" 
-                labelPosition='before'>
-                Private Channel:
-              </mat-checkbox>
-      
-              </div>
               
             </mat-card>
             <div class="d-flex flex-row-reverse my-3 my-lg-4">
               <div>
-                <button mat-button class="ml-lg-1 btn">
+                <button mat-button (click)="goBack()" class="ml-lg-1 btn">
                 
                   Cancel
               </button>
               
-              <button mat-flat-button color="primary" class="ml-lg-2 btn">
+              <button mat-flat-button color="primary" (click)="addAnother()" class="ml-lg-2 btn">
                 
                 Add & Create Another
               </button>
               
-              <button mat-flat-button color="primary" class="ml-lg-2 btn">
+              <button mat-flat-button color="primary" type="submit" class="ml-lg-2 btn">
                 
                 Add Topic
               </button>

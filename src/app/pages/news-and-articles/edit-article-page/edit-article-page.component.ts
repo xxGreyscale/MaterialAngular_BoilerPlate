@@ -15,7 +15,7 @@ export class EditArticlePageComponent implements OnInit {
     subtile: 'jdksjknf',
     category: 'option2',
     link: 'www.google.com',
-    tags: ['hugo', 'hugo', 'hugo'],
+    tags: [{name: 'hugo'}, {name: 'hugo'}, {name: 'hugo'}],
     published: true,
   }
 

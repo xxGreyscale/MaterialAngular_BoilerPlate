@@ -65,7 +65,7 @@ export class TopicsFormComponent implements OnInit {
     this.requestService.endPoint = 'forums/topics';
     this.requestService.create(payload).subscribe(response => {
       const responseCatcher: any = response;
-      this.openSnackBar(responseCatcher.message);
+      this.openSnackBar(responseCatcher.message, 'success');
     });
   }
 
@@ -73,7 +73,7 @@ export class TopicsFormComponent implements OnInit {
     this.requestService.endPoint = 'forums/topics';
     this.requestService.update(payload).subscribe(response => {
     const responseCatcher: any = response;
-    this.openSnackBar(responseCatcher.message);
+    this.openSnackBar(responseCatcher.message, 'success');
   });
   }
 
@@ -125,9 +125,11 @@ export class TopicsFormComponent implements OnInit {
     }
   }
 
-  openSnackBar(response) {
-    this.snackBar.open(response, 'undo' ,{
+  openSnackBar(response, classStatus) {
+    this.snackBar.open(response, 'dismiss' , {
       duration: 2000,
+      horizontalPosition: 'right',
+      panelClass: [classStatus]
     });
   }
 

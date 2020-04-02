@@ -1,36 +1,43 @@
 @import '~@angular/material/theming';
 @import 'colors.scss';
+@import './sidenave.component.scss-theme.scss';
 // Plus imports for other components in your app.
+
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: 'Poppins, san-serif',
+  $headline: mat-typography-level(32px, 48px, 300),
+  $title: mat-typography-level(32px, 48px, 700),
+  $subheading-2: mat-typography-level(24px, 48px, 600),
+  $body-1: mat-typography-level(14px, 24px, 400),
+  $body-2: mat-typography-level(16px, 24px, 500)
+);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($custom-typography);
+
+// Override the typography in the core CSS.
+@include mat-core($custom-typography);
+
+
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // **Be sure that you only ever include this mixin once!**
-@include mat-core();
+// @include mat-core();
 
 // Define the default theme (same as the example above).
-$admin-portal-primary: mat-palette($shades-of-grey, 900);
-$admin-portal-accent:  mat-palette($id8-yellow, A200, A100, A400);
-$admin-portal-warn: mat-palette($mat-red);
 
-$admin-portal-theme:   mat-light-theme($admin-portal-primary, $admin-portal-accent, $admin-portal-warn);
-
-
-@mixin custom-theme($theme) {
-  // add custome themes here
+@mixin custom-components-theme($theme, $theme-info, $theme-success, $theme-warnig, $theme-error) {
+  @include sidenav-component-theme($theme);
 }
-// Include the default theme styles.
-@include angular-material-theme($admin-portal-theme);
 
-
-// Define an alternate dark theme.
-$dark-primary: mat-palette($mat-blue-grey);
-$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
-$dark-warn:    mat-palette($mat-deep-orange);
-$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 // Include the alternative theme styles inside of a block with a CSS class. You can make this
 // CSS class whatever you want. In this example, any component inside of an element with
 // `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
-.unicorn-dark-theme {
-  @include angular-material-theme($dark-theme);
-}
+// .unicorn-dark-theme {
+//   @include angular-material-theme($dark-theme);
+// }

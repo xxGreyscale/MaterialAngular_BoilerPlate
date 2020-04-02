@@ -14,17 +14,21 @@
 
 
 
+
 // Sidenav
 .sidenav-container {
     flex: 1;
     margin-top: 60px;
   }
 
+  .side-nav {
+    background-color: #181818;
+  }
+
 .nav-container {
     justify-content: flex-end;
     display: flex;
     width: 100%;
-
 }
   
 // Main content, what is found at the middle of the dashboard
@@ -37,4 +41,5 @@
   .mat-drawer-content{
     overflow: initial !important;
   }
+
 

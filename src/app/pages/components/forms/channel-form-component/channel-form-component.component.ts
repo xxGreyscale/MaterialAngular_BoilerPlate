@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, NgZone, Input } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { take } from 'rxjs/operators';
+import { take, endWith } from 'rxjs/operators';
 import { RequestsService } from 'src/app/services/request-provider.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -61,21 +61,28 @@ export class ChannelFormComponentComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('clicked');
+    
     let payload: object;
     if (this.channelId) {
      payload = {
+        id: this.channelId,
         title: this.channelForm.get('title').value,
         subtitle: this.channelForm.get('subtitle').value,
         description: this.channelForm.get('description').value,
         location: this.channelForm.get('location').value,
+        is_private: this.channelForm.get('private').value,
         color: this.channelForm.get('color').value,
       };
+      console.log(payload)
+     this.updateChannel(payload);
     } else {
       payload = {
         title: this.channelForm.get('title').value,
         subtitle: this.channelForm.get('subtitle').value,
         description: this.channelForm.get('description').value,
         location: this.channelForm.get('location').value,
+        is_private: this.channel.get('private').value,
         color: this.channelForm.get('color').value,
       };
       this.createChannel(payload);
@@ -101,7 +108,7 @@ export class ChannelFormComponentComponent implements OnInit {
     this.requestService.endPoint = 'forums/channels';
     this.requestService.update(payload).subscribe(response => {
     const responseCatcher: any = response;
-    this.openSnackBar(responseCatcher.message);
+    this.openSnackBar(responseCatcher.message, 'success');
   });
   }
 
@@ -127,9 +134,11 @@ export class ChannelFormComponentComponent implements OnInit {
 
   }
 
-  openSnackBar(response) {
+  openSnackBar(response, classStatus) {
     this.snackBar.open(response, 'Done' , {
       duration: 2000,
+      horizontalPosition: 'right',
+      panelClass: classStatus
     });
   }
 

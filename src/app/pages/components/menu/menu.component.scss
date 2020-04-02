@@ -4,7 +4,7 @@
 
   .menu-title {
     flex: 1 0 auto;
-    font-weight: bold !important;
+    font-weight:  400;
   }
 
 
@@ -13,6 +13,10 @@
     margin: 0 0.5rem 0 0;
     width: 1em;
     text-align: center
+  }
+
+  .collapseMenu {
+    display: none;
   }
 
   // ************ This is Override
@@ -29,6 +33,26 @@
     } 
    }
  }
+
+ .active {
+   .nav-item-link {
+     color: #f7e031 !important;
+   }
+ }
+ .active::before {
+   content: "";
+   width: 4px;
+   height: 48px;
+   left: 0;
+   background-color: #f7e031;
+   display: inline-block;
+   position: absolute;
+ }
+
+ .nav-item-link {
+  color: white;
+  font-weight: 600;
+}
 
   .expandMenu {
     // Overide deep classes within expandMenu
@@ -52,8 +76,9 @@
 
     }
     
-    .routecon {
-      font-size: 1.5rem !important;
+    .routeIcon {
+      font-weight: lighter;
+    font-size: 1.5rem !important;
     margin: 0 0.5rem 0 0;
     width: 1em !important;
     text-align: center;

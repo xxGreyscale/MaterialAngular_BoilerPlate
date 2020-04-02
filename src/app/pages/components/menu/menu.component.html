@@ -1,21 +1,20 @@
-  <a mat-list-item [class.expandMenu]='isExpanded' [ngStyle]="{'padding-left': (2 * 12) + 'px'}" (click)="onItemSelected(item)"
+  <a mat-list-item class="nav-links" [class.expandMenu]='isExpanded' [ngStyle]="{'padding-left': (2 * 12) + 'px'}" (click)="onItemSelected(item)"
               [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': listExpanded}">
-  <mat-icon class="routeIcon">{{ item.icon }}</mat-icon>
+  <mat-icon class="material-icons-outlined nav-item-link routeIcon">{{ item.icon }}</mat-icon>
   <div matLine *ngIf="isExpanded"> 
             
-    <span class="menu-title">
+    <span class="menu-title nav-item-link">
         {{ item.title }}
     </span>
 
     <span style="flex: auto"></span>
-    <mat-icon *ngIf="item.children" [@indicatorRotate]="listExpanded ? 'expanded': 'collapsed'">
+    <mat-icon class="router-icon nav-item-link" *ngIf="item.children" [@indicatorRotate]="listExpanded ? 'expanded': 'collapsed'">
       expand_more
     </mat-icon>
 </div>
 
 </a>
-<div *ngIf="listExpanded">
-    <!-- <app-menu [isExpanded]="isExpanded" [item]="item.children"> -->
+<div *ngIf="listExpanded" [class.collapseMenu]='!isExpanded && listExpanded'>
   <app-menu [isExpanded]="isExpanded" *ngFor="let child of item.children" [item]="child">
   </app-menu>
 </div>

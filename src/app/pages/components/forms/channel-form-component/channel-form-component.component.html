@@ -97,7 +97,7 @@
             Cancel
         </button>
         
-        <button mat-flat-button *ngIf="channelId" color="primary" (click)="addAnother()" class="ml-lg-2 btn">
+        <button mat-flat-button *ngIf="!channelId" color="primary" (click)="addAnother()" class="ml-lg-2 btn">
           
           Add & Create Another
         </button>
@@ -106,7 +106,7 @@
           <div *ngIf="!channelId">
             Create Channel
           </div>
-          <div *ngIf="channel">
+          <div *ngIf="channelId">
             Update Channel
           </div>
           

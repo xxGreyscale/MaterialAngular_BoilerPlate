@@ -60,14 +60,19 @@
                   Cancel
               </button>
               
-              <button mat-flat-button color="primary" (click)="addAnother()" class="ml-lg-2 btn">
+              <button *ngIf="!topicId" mat-flat-button color="primary" (click)="addAnother()" class="ml-lg-2 btn">
                 
                 Add & Create Another
               </button>
               
               <button mat-flat-button color="primary" type="submit" class="ml-lg-2 btn">
+                <div *ngIf="!topicId">
+                  Add Topic
+                </div>
+                <div *ngIf="topicId">
+                  Update Topic
+                </div>
                 
-                Add Topic
               </button>
               </div>
             </div>

@@ -1,12 +1,16 @@
-<mat-toolbar color="primary" class="app-toolbar">
-    <button  mat-icon-button (click)="isExpanded = !isExpanded">
+<mat-toolbar color="primary" class="app-toolbar shadow">
+    <div class="pl-3 d-inline">
+      <button class="d-inline" mat-icon-button (click)="isExpanded = !isExpanded">
         <mat-icon>menu</mat-icon>
         </button>
 
-        <h4> Id8 Space</h4>
+        <h4 class="mx-lg-3 d-inline" >
+          <img src="assets/img/logo-white.png" style="max-width: 80px;" alt="id8-logo">
+        </h4>
+    </div>
 </mat-toolbar>
-  <mat-sidenav-container class="sidenav-container" autosize>
-    <mat-sidenav [class.widthOnExpand]="isExpanded" #sidenav fixedInViewport="true" fixedTopGap="60" mode="side" position="start" opened="true">
+  <mat-sidenav-container color="primary" class="sidenav-container " autosize>
+    <mat-sidenav class="side-nav" [class.widthOnExpand]="isExpanded" #sidenav fixedInViewport="true" fixedTopGap="60" mode="side" position="start" opened="true">
         <mat-nav-list>
           <app-menu [isExpanded]="isExpanded" *ngFor="let item of menuList" [item]="item"></app-menu>
         </mat-nav-list>

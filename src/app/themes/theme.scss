@@ -1,0 +1,19 @@
+$admin-portal-primary: mat-palette($shades-of-grey, 900);
+$admin-portal-accent:  mat-palette($id8-yellow, A200, A100, A400);
+$admin-portal-warn: mat-palette($mat-red);
+$admin-portal-background: mat-palette($shades-of-grey, 800);
+
+
+$admin-portal-theme:   mat-light-theme($admin-portal-primary, $admin-portal-accent, $admin-portal-warn,);
+
+// themes for notifications
+$admin-portal-theme-info: mat-palette($mat-blue);
+$admin-portal-theme-success: mat-palette($mat-green);
+$admin-portal-theme-warning: mat-palette($mat-yellow);
+$admin-portal-theme-error: mat-palette($mat-red);
+
+// Define an alternate dark theme.
+// $id8-dark-primary: mat-palette($mat-blue-grey);
+// $id8-dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+// $id8-dark-warn:    mat-palette($mat-deep-orange);
+// $id8-dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);

@@ -10,6 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 
 
 
+export interface Tag {
+  name: string;
+  slug: string;
+  type: string;
+}
 
 export interface Category {
   name: string;
@@ -32,7 +37,7 @@ export class CreateArticleFormComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  tags: string[] = [];
+  tags: Tag[] = [];
 
   // category select
   categories: Category[] = [
@@ -95,9 +100,9 @@ export class CreateArticleFormComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
+    // Add our tag
     if ((value || '').trim()) {
-      this.tags.push(value.trim());
+      this.tags.push({name: value.trim(), slug: 'true', type: 'News'});
       console.log(this.tags);
     }
 
@@ -107,7 +112,7 @@ export class CreateArticleFormComponent implements OnInit {
     }
   }
 
-  remove(tag: string): void {
+  remove(tag: Tag): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
@@ -130,8 +135,11 @@ onSubmit() {
       content: this.articleForm.get('content').value,
     // coverphoto: this.articleForm.get('coverphoto').value,
       published: this.articleForm.get('published').value,
-      tags: this.tags,
+      tags: JSON.stringify(this.tags),
+      // this will be resolved soon
     };
+    console.log(payload)
+    debugger
     this.updateArticle(payload);
 
   } else {
@@ -143,7 +151,7 @@ onSubmit() {
       content: this.articleForm.get('content').value,
     // coverphoto: this.articleForm.get('coverphoto').value,
       published: this.articleForm.get('published').value,
-      tags: this.tags,
+      tags: JSON.stringify(this.tags),
     };
     this.createArticle(payload);
   }
@@ -162,7 +170,7 @@ onFileChange(fileInput: any) {
 
 constructor(private _ngZone: NgZone, private fb: FormBuilder,
             private requestService: RequestsService,
-            private _snackBar: MatSnackBar,
+            private snackBar: MatSnackBar,
             private route: ActivatedRoute) {
               this.articleForm = this.fb.group({
                 title: ['', Validators.required],
@@ -195,7 +203,7 @@ createArticle(payload: any) {
   this.requestService.endPoint = 'posts';
   this.requestService.create(payload).subscribe(response => {
     const responseCatcher: any = response;
-    this.openSnackBar(responseCatcher.message);
+    this.openSnackBar(responseCatcher.message, 'success');
   });
 }
 
@@ -203,7 +211,10 @@ updateArticle(payload: any) {
   this.requestService.endPoint = 'posts';
   this.requestService.update(payload).subscribe(response => {
     const responseCatcher: any = response;
-    this.openSnackBar(responseCatcher.message);
+    this.openSnackBar(responseCatcher.message, 'success');
+  }, error => {
+    console.log(error);
+    this.openSnackBar(error.message, 'success');
   });
 }
 
@@ -212,12 +223,12 @@ getArticle(resourceId) {
   this.requestService.getWithId(resourceId).subscribe(response => {
     const responseCatcher: any = response;
     this.article = responseCatcher.data;
+    console.log(this.article)
     this.fillInput(this.article);
   });
 }
 
 fillInput(resource: any) {
-  console.log(resource)
   this.articleForm.get('title').setValue(resource.title);
   this.articleForm.get('subtitle').setValue(resource.subtitle);
   this.articleForm.get('category').setValue(resource.category);
@@ -242,9 +253,11 @@ showErrors(error) {
   }
 }
 
-openSnackBar(response) {
-  this._snackBar.open(response, 'undo' ,{
-    duration: 2000,
-  });
-}
+openSnackBar(response, classStatus) {
+    this.snackBar.open(response, 'dismiss' , {
+      duration: 2000,
+      horizontalPosition: 'right',
+      panelClass: [classStatus]
+    });
+  }
 }

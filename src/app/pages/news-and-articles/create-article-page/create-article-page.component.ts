@@ -6,14 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-article-page.component.scss']
 })
 export class CreateArticlePageComponent implements OnInit {
-  data = {
-    title: '',
-    subtile: '',
-    category: '',
-    link: '',
-    tags: [],
-    published: false,
-  }
 
   constructor() { }
 

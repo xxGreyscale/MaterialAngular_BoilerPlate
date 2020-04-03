@@ -9,11 +9,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageService } from './services/storage.service';
 import { TokenInterceptor } from './services/token-interceptor';
 import { CommonModule } from '@angular/common';
+import { TableService } from './services/table.service';
 
 const providers = [
   RequestsService,
   AuthGuardService,
   StorageService,
+  TableService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

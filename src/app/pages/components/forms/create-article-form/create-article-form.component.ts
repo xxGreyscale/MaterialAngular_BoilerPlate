@@ -29,7 +29,6 @@ export interface Category {
   styleUrls: ['./create-article-form.component.scss']
 })
 export class CreateArticleFormComponent implements OnInit {
-  @Input() formData;
 
   // Tag chips variables
   visible = true;

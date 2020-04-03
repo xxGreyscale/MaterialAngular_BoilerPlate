@@ -12,50 +12,50 @@
         <div class="tiles my-4">
            <div class="tiles-item w-15 mr-4 mb-4">
             <mat-card class="category tiles">
-                <h1>
+                <h3>
                     LE
-                </h1>
+                </h3>
             </mat-card>
 
-            <h6 class="tile-text text-center">
+            <p class="tile-text text-center">
                Leadership 
-            </h6>
+            </p>
            </div>
 
            <div class="tiles-item w-15 mr-4 mb-4">
             <mat-card class="category tiles">
-                <h1>
+                <h3>
                     LE
-                </h1>
+                </h3>
             </mat-card>
 
-            <h6 class="tile-text text-center">
+            <p class="tile-text text-center">
                Leadership 
-            </h6>
+            </p>
            </div>
 
            <div class="tiles-item w-15 mr-4 mb-4">
             <mat-card class="category tiles">
-                <h1>
+                <h3>
                     LE
-                </h1>
+                </h3>
             </mat-card>
 
-            <h6 class="tile-text text-center">
+            <p class="tile-text text-center">
                Leadership 
-            </h6>
+            </p>
            </div>
 
            <div class="tiles-item w-15 mr-4 mb-4">
             <mat-card class="category tiles">
-                <h1>
+                <h3>
                     LE
-                </h1>
+                </h3>
             </mat-card>
 
-            <h6 class="tile-text text-center">
+            <p class="tile-text text-center">
                Leadership & Mentorship
-            </h6>
+            </p>
            </div>
 
             
@@ -73,11 +73,14 @@
                 <h1 class="d-flex align-items-center mb-0">
                     News & Articles
                 </h1>
-        
-                <mat-form-field appearance="outline" class="d-flex align-items-center search-input mx-lg-3">
-                    <input matInput placeholder="Ex. ium">
+
+                <form [formGroup]="searchForm" (keyup.enter)="search($event)" class="d-flex align-items-center search-input mx-lg-3">
+                  <mat-form-field appearance="outline">
+                    <input matInput formControlName="search" placeholder="Ex. ium">
                     <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium"> -->
                   </mat-form-field>
+                </form>
+                
             </div>
         </div>
 
@@ -102,8 +105,8 @@
       
         <div class="example-table-container">
       
-          <table mat-table [dataSource]="data" class="example-table"
-                 matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+          <table mat-table [dataSource]="_dataSource" class="example-table"
+                 matSort matSortActive="title" matSortDisableClear matSortDirection="desc">
                  <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
                 <th mat-header-cell *matHeaderCellDef>

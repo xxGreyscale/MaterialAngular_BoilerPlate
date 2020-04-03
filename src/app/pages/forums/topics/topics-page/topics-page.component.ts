@@ -7,6 +7,8 @@ import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-topics-page',
@@ -16,6 +18,7 @@ import { Router } from '@angular/router';
 export class TopicsPageComponent implements OnInit, AfterViewInit {
 
   selection = new SelectionModel<any>(true, []);
+  _dataSource: MatTableDataSource<any>;
 
   displayedColumns: string[] = ['select', 'coverphoto', 'title', 'description', 'color', 'more'];
   data: any[] = [];
@@ -26,10 +29,15 @@ export class TopicsPageComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  searchForm: any;
 
   constructor(private requestService: RequestsService,
               private snackBar: MatSnackBar,
+              private fb: FormBuilder,
               private router: Router) {
+                this.searchForm = this.fb.group({
+                  search: [''],
+                });
    }
 
   ngOnInit() {
@@ -39,37 +47,9 @@ export class TopicsPageComponent implements OnInit, AfterViewInit {
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    this.dataSource();
+    this.dataSource(this.getTopics(this.sort.active, this.sort.direction, this.paginator.pageIndex));
   }
 
-  dataSource() {
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          return this.getTopics(
-            this.sort.active, this.sort.direction, this.paginator.pageIndex);
-        }),
-        map(data => {
-
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = false;
-          this.resultsLength = data.data.length;
-
-          return data.data;
-        }),
-        catchError(() => {
-          this.isLoadingResults = false;
-          // Catch if the Id8 API has reached its rate limit. Return empty data.
-          this.isRateLimitReached = true;
-          return observableOf([]);
-        })
-      ).subscribe(data => {
-        this.data = data;
-      });
-  }
 
   getTopics(sort: string, order: string, page: number): Observable<any> {
     this.requestService.endPoint = 'forums/topics';
@@ -108,7 +88,7 @@ export class TopicsPageComponent implements OnInit, AfterViewInit {
         this.snackBar.open('Article deleted', 'Undo', {
           duration: 2000,
         });
-        this.dataSource();
+        this.dataSource(this.getTopics(this.sort.active, this.sort.direction, this.paginator.pageIndex));
       }
     });
   }
@@ -119,6 +99,49 @@ export class TopicsPageComponent implements OnInit, AfterViewInit {
 
   editArticle(resource) {
     this.router.navigate([`/dashboard/forums/topics/create/${resource.id}`], resource.id);
+  }
+
+  // Search logic
+  search(event: Event) {
+    let searchValue: string;
+    // search API here, we set a timeout and it will activate after 500ms
+    setTimeout(() => {
+       searchValue = (event.target as HTMLInputElement).value;
+       console.log(searchValue);
+       this.dataSource(this.getSearchData(this.sort.active, this.sort.direction, this.paginator.pageIndex, searchValue));
+    }, 500);
+  }
+
+  getSearchData(sort: string, order: string, page: number, query: string): Observable<any> {
+    this.requestService.endPoint = 'forums/topics/search';
+    return this.requestService.fetchContent('name', query);
+  }
+
+  dataSource(observable: Observable<any>) {
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return observable;
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          this.resultsLength = data.data.length;
+
+          return data.data;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          // Catch if the Id8 API has reached its rate limit. Return empty data.
+          this.isRateLimitReached = true;
+          return observableOf([]);
+        })
+      ).subscribe(data => {
+        this._dataSource = new MatTableDataSource<any>(data);
+      });
   }
 
 }

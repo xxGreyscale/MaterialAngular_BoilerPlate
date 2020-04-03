@@ -4,7 +4,6 @@ import { NewsAndArticlesContainerComponent } from './news-and-articles-container
 import { NewsAndArticlesListComponent } from './news-and-articles-list/news-and-articles-list.component';
 import { ArticlePageComponent } from './article-page/article-page.component';
 import { CreateArticlePageComponent } from './create-article-page/create-article-page.component';
-import { EditArticlePageComponent } from './edit-article-page/edit-article-page.component';
 
 const childRoutes: Routes = [
   {
@@ -21,7 +20,7 @@ const childRoutes: Routes = [
   },
   {
     path: 'editing-article/:id',
-    component: EditArticlePageComponent,
+    component: CreateArticlePageComponent,
   }
 ];
 

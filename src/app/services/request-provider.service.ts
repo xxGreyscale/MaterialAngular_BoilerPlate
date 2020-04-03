@@ -30,8 +30,12 @@ export class RequestsService {
       }
 
     }
-    console.log(`${env.baseURL}${this.endPoint}${params}`);
-    
+
+    return this.httpClient.get(`${env.baseURL}${this.endPoint}${params}`);
+  }
+
+  fetchContent(param, resource) {
+    let params = `?${param}=${resource}`;
     return this.httpClient.get(`${env.baseURL}${this.endPoint}${params}`);
   }
 

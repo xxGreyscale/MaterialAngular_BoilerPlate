@@ -7,6 +7,8 @@ import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-channels-page',
@@ -26,8 +28,16 @@ export class ChannelsPageComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  _dataSource: MatTableDataSource<any>;
+  searchForm: any;
 
-  constructor(private requestService: RequestsService, private snackBar: MatSnackBar, private router: Router) {
+  constructor(private requestService: RequestsService,
+              private snackBar: MatSnackBar,
+              private fb: FormBuilder,
+              private router: Router) {
+                this.searchForm = this.fb.group({
+                  search: [''],
+                });
    }
 
   ngOnInit() {
@@ -36,9 +46,8 @@ export class ChannelsPageComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
     // If the user changes the sort order, reset back to the first page.
-
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    this.dataSource();
+    this.dataSource(this.getChannels(this.sort.active, this.sort.direction, this.paginator.pageIndex));
   }
 
   getChannels(sort: string, order: string, page: number): Observable<any> {
@@ -68,36 +77,6 @@ export class ChannelsPageComponent implements OnInit, AfterViewInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.title + 1}`;
   }
 
-  dataSource() {
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          return this.getChannels(
-            this.sort.active, this.sort.direction, this.paginator.pageIndex);
-        }),
-        map(data => {
-
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = false;
-          this.resultsLength = data.data.length;
-
-          return data.data;
-        }),
-        catchError(() => {
-          this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
-          this.isRateLimitReached = true;
-          return observableOf([]);
-        })
-      ).subscribe(data => {
-        this.data = data;
-      });
-  }
-
-
   deleteArticle(resource) {
     this.requestService.endPoint = `forums/channels`;
     this.requestService.delete(resource).subscribe(response => {
@@ -106,7 +85,7 @@ export class ChannelsPageComponent implements OnInit, AfterViewInit {
         this.snackBar.open('Article deleted', 'Undo', {
           duration: 2000,
         });
-        this.dataSource();
+        this.dataSource(this.getChannels(this.sort.active, this.sort.direction, this.paginator.pageIndex));
       }
     });
   }
@@ -118,6 +97,50 @@ export class ChannelsPageComponent implements OnInit, AfterViewInit {
   editArticle(resource) {
     this.router.navigate([`/dashboard/forums/channels/edit-channel/${resource.id}`], resource.id);
   }
+
+    // Search logic
+    search(event: Event) {
+      let searchValue: string;
+      // search API here, we set a timeout and it will activate after 500ms
+      setTimeout(() => {
+         searchValue = (event.target as HTMLInputElement).value;
+         console.log(searchValue);
+         this.dataSource(this.getSearchData(this.sort.active, this.sort.direction, this.paginator.pageIndex, searchValue));
+      }, 500);
+    }
+
+    getSearchData(sort: string, order: string, page: number, query: string): Observable<any> {
+      this.requestService.endPoint = 'forums/channels/search';
+      return this.requestService.fetchContent('title', query);
+    }
+
+    dataSource(observable: Observable<any>) {
+      merge(this.sort.sortChange, this.paginator.page)
+        .pipe(
+          startWith({}),
+          switchMap(() => {
+            this.isLoadingResults = true;
+            return observable;
+          }),
+          map(data => {
+            // Flip flag to show that loading has finished.
+            this.isLoadingResults = false;
+            this.isRateLimitReached = false;
+            this.resultsLength = data.data.length;
+
+            return data.data;
+          }),
+          catchError(() => {
+            this.isLoadingResults = false;
+            // Catch if the Id8 API has reached its rate limit. Return empty data.
+            this.isRateLimitReached = true;
+            return observableOf([]);
+          })
+        ).subscribe(data => {
+          this._dataSource = new MatTableDataSource<any>(data);
+        });
+    }
+
 
 
 }

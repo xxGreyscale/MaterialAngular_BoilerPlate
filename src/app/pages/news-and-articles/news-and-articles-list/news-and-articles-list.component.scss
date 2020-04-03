@@ -12,12 +12,24 @@
 .tiles-item {
     justify-content: center;
     width: fit-content;
+    max-width: 140px;
+    cursor: pointer;
+}
+
+.tiles-item:hover {
+   .mat-card {
+    box-shadow: 5px 5px 18px #888888;
+   }
+
+   .tile-text {
+       font-size: 1.1rem;
+   }
 }
 
 .tile-text {
     display: block;
     margin-top: .8rem;
-    max-width: 90%;
+    max-width: 100%;
 }
 
 .category.tiles {

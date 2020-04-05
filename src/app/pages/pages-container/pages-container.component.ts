@@ -32,6 +32,7 @@ export class PagesContainerComponent implements OnInit {
       children: [
         { icon: '', title: 'Channels', parent: false, route: '/dashboard/forums/channels'},
         { icon: '', title: 'Topics', parent: false, route: '/dashboard/forums/topics'},
+        { icon: '', title: 'Posts', parent: false, route: '/dashboard/forums/posts'},
       ]
     },
     {

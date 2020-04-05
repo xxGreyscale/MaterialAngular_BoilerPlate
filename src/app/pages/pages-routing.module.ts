@@ -26,6 +26,11 @@ const programAdminRoutes: Routes = [
             loadChildren: () => import('./forums/topics/topics.module')
               .then(m => m.TopicsModule),
           },
+          {
+            path: 'posts',
+            loadChildren: () => import('./forums/posts/posts.module')
+              .then(m => m.PostsModule),
+          },
         ]
       },
     ]

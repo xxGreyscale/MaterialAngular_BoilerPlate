@@ -97,16 +97,44 @@
             <div *ngIf="columnHeader[tableData] === 'Category'">
              {{ element[tableData].name}}
             </div>
+            <div *ngIf="columnHeader[tableData] === 'Channel'">
+              {{ element[tableData].title}}
+             </div>
+             <div *ngIf="columnHeader[tableData] === 'Topic'">
+              {{ element[tableData].name}}
+             </div>
           </div>
 
           <div *ngIf="columnHeader[tableData] === 'Published'">
-            <mat-icon *ngIf="element[tableData]" class="text-success mx-auto">
+            <mat-icon *ngIf="element[tableData]" class="text-success mx-auto material-icons-outlined">
               check_circle_outline
             </mat-icon>
             <mat-icon *ngIf="!element[tableData]" class="text-danger mx-auto material-icons-outlined">
               cancel_outline
             </mat-icon>
           </div>
+
+          <!-- Check if channel is featured -->
+          <div *ngIf="columnHeader[tableData] === 'Featured?'">
+            <mat-icon *ngIf="element[tableData]" class="text-success mx-auto material-icons-outlined">
+              check_circle_outline
+            </mat-icon>
+            <mat-icon *ngIf="!element[tableData]" class="text-danger mx-auto material-icons-outlined">
+              cancel_outline
+            </mat-icon>
+          </div>
+
+          <!-- Check for columns with Privacy and show icons instead -->
+          <div *ngIf="columnHeader[tableData] === 'Privacy'">
+            <mat-icon *ngIf="element[tableData]" class="text-success mx-auto text-center material-icons-outlined">
+              lock_open
+            </mat-icon>
+            <mat-icon *ngIf="!element[tableData]" class="text-danger mx-auto material-icons-outlined text-center">
+              lock
+            </mat-icon>
+          </div>
+
+
 
           <div *ngIf="columnHeader[tableData] === 'Color'">
             <div class="d-flex align-items-center">
@@ -115,7 +143,16 @@
             </div>
           </div>
 
-          <div *ngIf="columnHeader[tableData] != 'Category' && columnHeader[tableData] != 'Published' && columnHeader[tableData] != 'Avatar' && columnHeader[tableData] != 'Color'">               
+          <!-- For all other columns with no special content -->
+          <div 
+          *ngIf="columnHeader[tableData] != 'Category' && 
+          columnHeader[tableData] != 'Published' && 
+          columnHeader[tableData] != 'Avatar' && 
+          columnHeader[tableData] != 'Color' && 
+          columnHeader[tableData] != 'Topic' && 
+          columnHeader[tableData] != 'Channel' &&
+          columnHeader[tableData] != 'Privacy' && 
+          columnHeader[tableData] != 'Featured?'">               
             {{ element[tableData]}}
            </div>
 

@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,6 +16,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
   declarations: [TopicsPageComponent, CreateTopicPageComponent, TopicsContainerComponent, TopicsFormComponent],
   imports: [
     CommonModule,
+    ComponentsModule,
     MaterialFileInputModule,
     FormsModule,
     ReactiveFormsModule,

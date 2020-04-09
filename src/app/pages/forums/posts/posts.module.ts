@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { DataTablesComponentComponent } from './../../components/data-tables-component/data-tables-component.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,6 +14,7 @@ import { PostsContainerComponent } from './posts-container.component';
   declarations: [PostsPageComponent, PostsContainerComponent],
   imports: [
     CommonModule,
+    ComponentsModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,

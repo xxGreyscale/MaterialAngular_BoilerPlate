@@ -18,7 +18,7 @@ const adminForumTopicsRoutes = [
         component: CreateTopicPageComponent,
       },
       {
-        path: 'create/:id',
+        path: 'edit/:id',
         component: CreateTopicPageComponent,
       }
     ]

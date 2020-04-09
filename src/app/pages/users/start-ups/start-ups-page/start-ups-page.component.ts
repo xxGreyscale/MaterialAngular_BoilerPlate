@@ -15,6 +15,8 @@ export class StartUpsPageComponent implements OnInit {
     this.dtService.currentPage = 'startups'
     this.dtService.currentPageTitle = 'Start-ups'
     this.dtService.getResourcesEndpoint = 'startupusers';
+    this.dtService.viewResourceUrl = ''
+    this.dtService.editResourceUrl = ''
     this.dtService.searchEndpoint = 'startupusers/search';
     this.dtService.searchParam = 'first_name';    
     
@@ -26,15 +28,9 @@ export class StartUpsPageComponent implements OnInit {
  startups: any;
 
  ngOnInit(): void {
-   this.startups = this.getStartUps();
    window.setTimeout(() => {
     this.dataIsLoaded = true;
    }, 100)
  }
 
- getStartUps() {
-   this.requestService.endPoint = 'startupusers';
-   const observable: Observable<any> = this.requestService.get();
-   return observable;
- }
 }

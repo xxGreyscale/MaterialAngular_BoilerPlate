@@ -8,6 +8,22 @@
           <img src="assets/img/logo-white.png" style="max-width: 80px;" alt="id8-logo">
         </h4>
     </div>
+
+    <div class="ml-auto d-flex justify-content-end">
+      <div class="d-flex flex-row-reverse">
+        <span style="font-size: 18px; font-weight: 500;">
+          <mat-menu #appMenu="matMenu" yPosition="below" xPosition="after">
+            <button mat-menu-item >Profile</button>
+            <button mat-menu-item >Edit Profile</button>
+            <button mat-menu-item >Logout</button>
+    
+          </mat-menu>
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        </span>
+      </div>
+    </div>
 </mat-toolbar>
   <mat-sidenav-container color="primary" class="sidenav-container " autosize>
     <mat-sidenav class="side-nav" [class.widthOnExpand]="isExpanded" #sidenav fixedInViewport="true" fixedTopGap="60" mode="side" position="start" opened="true">

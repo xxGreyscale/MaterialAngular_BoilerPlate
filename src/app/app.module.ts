@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { TableService } from './services/table.service';
 import { PageNotFoundComponent } from './miscellaneous/page-not-found/page-not-found.component';
 import { DataTableService } from './services/data-table.service';
+import { MentorsPageComponent } from './pages/users/mentors/mentors-page/mentors-page.component';
 
 const providers = [
   RequestsService,

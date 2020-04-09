@@ -1,3 +1,4 @@
+import { DataTablesComponentComponent } from './../../components/data-tables-component/data-tables-component.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

@@ -1,0 +1,138 @@
+
+  
+  <section id="articles_list">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex">
+                <h1 class="d-flex align-items-center mb-0">
+                   {{ pageTitle }}
+                </h1>
+
+                <form [formGroup]="searchForm" (keyup.enter)="search($event)" class="d-flex align-items-center search-input mx-lg-3">
+                  <mat-form-field appearance="outline">
+                    <input matInput formControlName="search" placeholder="Ex. ium">
+                    <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium"> -->
+                  </mat-form-field>
+                </form>
+                
+            </div>
+        </div>
+
+        <div class="col text-right" *ngIf="currentPage != 'startups'">
+            <button mat-flat-button color="primary" (click)="goToCreateResourcePage()" class="my-lg-3 btn">{{ createBtn }}</button>
+            
+        </div>
+    </div>
+
+
+</section>
+
+  <section class="my-lg-2">
+    <div class="mat-table-container mat-elevation-z2">
+      <div class="loading-shade"
+           *ngIf="isLoadingResults || isRateLimitReached">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="rate-limit-reached" *ngIf="isRateLimitReached">
+          Id8 API rate limit has been reached. It will be reset in one minute.
+        </div>
+      </div>
+    
+      <div class="table-container">
+  <table mat-table [dataSource]="_dataSource" matSort>
+  
+  
+      <ng-container [matColumnDef]="tableData" *ngFor="let tableData of objectKeys(columnHeader)">
+        <!-- select checkbox as first header feild -->
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div *ngIf="columnHeader[tableData] === 'select'">
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </div>
+
+          <!-- Show nothing in more -->
+          <div *ngIf="columnHeader[tableData] === 'more'">
+            
+          </div>
+        
+          <div *ngIf="columnHeader[tableData] != 'select' && columnHeader[tableData] != 'more'" >
+            {{columnHeader[tableData]}}   
+          </div>
+           </th>
+
+           <!-- Table data -->
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="columnHeader[tableData] === 'select'">
+            <mat-checkbox (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(element) : null"
+            [checked]="selection.isSelected(element)"
+            [aria-label]="checkboxLabel(element)">
+            </mat-checkbox>
+          </div>
+          <div *ngIf="columnHeader[tableData] === 'more'">
+            <mat-menu #appMenu="matMenu" yPosition="below" xPosition="after">
+              <button mat-menu-item (click)="viewData(element)">View</button>
+              <button mat-menu-item (click)="editData(element)">Edit</button>
+              <button mat-menu-item (click)="deleteData(element)">Delete</button>
+      
+            </mat-menu>
+          <button mat-icon-button [matMenuTriggerFor]="appMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          </div>
+
+          <!-- if there is a cover phove or image -->
+          <div *ngIf="columnHeader[tableData] === 'Avatar' || columnHeader[tableData] === 'Cover Photo'">
+            <div *ngIf="element[tableData]">
+              <img [src]="element[tableData]" alt="Avatar" class="avatar">
+            </div>
+            <div *ngIf="element[tableData] === ''|| element[tableData] === null" alt="Avatar" class="avatar">
+              -
+              </div>
+          </div>
+
+          <div *ngIf="columnHeader[tableData] != 'Avatar' ">
+            <div *ngIf="columnHeader[tableData] === 'Category'">
+             {{ element[tableData].name}}
+            </div>
+          </div>
+
+          <div *ngIf="columnHeader[tableData] === 'Published'">
+            <mat-icon *ngIf="element[tableData]" class="text-success mx-auto">
+              check_circle_outline
+            </mat-icon>
+            <mat-icon *ngIf="!element[tableData]" class="text-danger mx-auto material-icons-outlined">
+              cancel_outline
+            </mat-icon>
+          </div>
+
+          <div *ngIf="columnHeader[tableData] === 'Color'">
+            <div class="d-flex align-items-center">
+              <div [style.background-color]="element[tableData]" class="color-indicator">   
+              </div><span>{{element[tableData]}}</span>
+            </div>
+          </div>
+
+          <div *ngIf="columnHeader[tableData] != 'Category' && columnHeader[tableData] != 'Published' && columnHeader[tableData] != 'Avatar' && columnHeader[tableData] != 'Color'">               
+            {{ element[tableData]}}
+           </div>
+
+
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="objectKeys(columnHeader)"></tr>
+      <tr mat-row *matRowDef="let row; columns: objectKeys(columnHeader);"></tr>
+    </table>
+    
+    </div>
+  
+    <mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>
+    </div>
+  
+  </section>
+
+
+  

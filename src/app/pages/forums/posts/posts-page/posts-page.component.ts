@@ -39,7 +39,7 @@ export class PostsPageComponent implements OnInit, AfterViewInit {
                 });
 }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   ngAfterViewInit() {

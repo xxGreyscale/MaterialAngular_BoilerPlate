@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -23,6 +24,7 @@ import { QuillModule } from 'ngx-quill';
   ],
   imports: [
     CommonModule,
+    ComponentsModule,
     MaterialFileInputModule,
     FormsModule,
     ReactiveFormsModule,

@@ -41,7 +41,7 @@ export class TopicsPageComponent implements OnInit, AfterViewInit {
    }
 
   ngOnInit() {
-  }
+  } 
 
   ngAfterViewInit() {
 

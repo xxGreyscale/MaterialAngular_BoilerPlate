@@ -22,8 +22,16 @@ export class PagesContainerComponent implements OnInit {
     {
       icon: 'home',
       title: 'Home',
-      parent: 'true',
+      parent: true,
       route: ''
+    },
+    {
+      icon: 'person',
+      title: 'Users',
+      parent: true,
+      children: [
+        {icon: '', title: 'Startups', parents: false,  route: '/dashboard/users/startups'},
+      ]
     },
     {
       icon: 'forum',

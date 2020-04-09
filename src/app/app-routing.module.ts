@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { PageNotFoundComponent } from './miscellaneous/page-not-found/page-not-found.component';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { AuthGuardService } from './services/auth-guard.service';
 
@@ -16,7 +17,7 @@ const routes: Routes = [
       .then(m => m.PagesModule),
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  // { path: '**', redirectTo: 'dashboard' },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 

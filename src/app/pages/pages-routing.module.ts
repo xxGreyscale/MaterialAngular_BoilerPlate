@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PagesContainerComponent } from './pages-container/pages-container.component';
 
 
-const programAdminRoutes: Routes = [
+const adminRoutes = [
   {
     path: '',
     component: PagesContainerComponent,
@@ -33,12 +33,21 @@ const programAdminRoutes: Routes = [
           },
         ]
       },
+      {
+        path: 'users',
+        loadChildren: () => import('./users/users.module')
+              .then(m => m.UsersModule),
+      }
     ]
   },
 ];
 
+const routes: Routes = [
+  ...adminRoutes
+]
+
 @NgModule({
-  imports: [RouterModule.forChild(programAdminRoutes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class PagesRoutingModule { }

@@ -71,37 +71,6 @@ button.btn.action {
 }
 
 
-table {
-    width: 100%;
-    overflow: auto;
-}
-
-th.mat-header-cell {
-    padding: 0.6rem !important;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.75rem !important;
-}
-
-tr {
-    // border: 1px solid #e7e7e7;
-    font-weight: 400;
-    font-size: 0.8rem !important;
-    height: 72px !important;
-}
-
-td.mat-cell {
-    padding: 0.6rem !important;
-    .color-indicator {
-        display: inline;
-        padding: 0.4rem;
-        max-width: 30px;
-        max-height: 30px;
-        border-radius: 8px;
-        margin: .2rem;
-    }
-}
-
 .color-indication {
     padding: 0.6rem;
 }

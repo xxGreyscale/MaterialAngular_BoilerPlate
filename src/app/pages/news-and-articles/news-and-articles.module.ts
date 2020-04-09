@@ -12,8 +12,6 @@ import { CreateArticleFormComponent } from '../components/forms/create-article-f
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from 'src/app/services/token-interceptor';
 
 
 
@@ -27,6 +25,7 @@ import { TokenInterceptor } from 'src/app/services/token-interceptor';
   ],
   imports: [
     CommonModule,
+    ComponentsModule,
     MaterialFileInputModule,
     FormsModule,
     ReactiveFormsModule,

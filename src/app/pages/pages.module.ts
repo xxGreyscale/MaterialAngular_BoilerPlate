@@ -19,13 +19,12 @@ const providers = [
 ];
 
 @NgModule({
-  declarations: [PagesContainerComponent, MenuComponent, ],
+  declarations: [PagesContainerComponent, MenuComponent ],
   imports: [
     ComponentsModule,
     CommonModule,
     MaterialModule,
     PagesRoutingModule,
-    NewsAndArticlesModule,
   ],
   providers: [
   ]

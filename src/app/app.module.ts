@@ -10,12 +10,15 @@ import { StorageService } from './services/storage.service';
 import { TokenInterceptor } from './services/token-interceptor';
 import { CommonModule } from '@angular/common';
 import { TableService } from './services/table.service';
+import { PageNotFoundComponent } from './miscellaneous/page-not-found/page-not-found.component';
+import { DataTableService } from './services/data-table.service';
 
 const providers = [
   RequestsService,
   AuthGuardService,
   StorageService,
   TableService,
+  DataTableService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
@@ -25,6 +28,7 @@ const providers = [
 @NgModule({
   declarations: [
     AppComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     CommonModule,

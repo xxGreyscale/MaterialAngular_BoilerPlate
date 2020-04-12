@@ -1,3 +1,4 @@
+import { MentorEditPageComponent } from './mentor-edit-page/mentor-edit-page.component';
 import { MentorsPageComponent } from './mentors-page/mentors-page.component';
 import { MentorsContainerComponent } from './mentors-container.component';
 import { NgModule } from '@angular/core';
@@ -7,6 +8,10 @@ const adminRoutes = [
   {
     path: '',
     component: MentorsPageComponent,
+  },
+  {
+    path: 'create',
+    component: MentorEditPageComponent,
   },
   
 ]

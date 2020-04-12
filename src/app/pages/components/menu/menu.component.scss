@@ -15,6 +15,20 @@
     text-align: center
   }
 
+  .expanded {
+    opacity: .2;
+  }
+
+  // .expanded:before {
+  //   content: '';
+  //   width: 4px;
+  //   height: 48px;
+  //   left: 0;
+  //   background-color: #f7e031;
+  //   display: inline-block;
+  //   position: absolute;
+  // }
+
   .collapseMenu {
     display: none;
   }
@@ -75,7 +89,7 @@
         line-height: 1.5rem;
         min-width: 156px;
         flex-direction: row-reverse;
-        font-size: 16px !important;
+        font-size: 15px !important;
       }
 
     }

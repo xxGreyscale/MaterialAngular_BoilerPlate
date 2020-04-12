@@ -45,6 +45,16 @@ export class NewsAndArticlesListComponent implements OnInit {
    window.setTimeout(() => {
     this.dataIsLoaded = true;
    }, 500)
+   this.getCategories();
+ }
+
+ getCategories() {
+   this.requestService.endPoint = 'article-categories'
+   this.requestService.get().subscribe(response=> {
+     let responseCatcher = response;
+     console.log(response);
+     
+   })
  }
 
 }

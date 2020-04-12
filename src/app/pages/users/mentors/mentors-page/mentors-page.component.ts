@@ -14,7 +14,7 @@ export class MentorsPageComponent implements OnInit {
     this.dtService.currentPage = 'mentors'
     this.dtService.currentPageTitle = 'Mentors'
     this.dtService.createButton = 'Create Mentor';
-    this.dtService.createButtonUrl = ''
+    this.dtService.createButtonUrl = '/dashboard/users/mentors/create'
     this.dtService.viewResourceUrl = ''
     this.dtService.editResourceUrl = ''
     this.dtService.getResourcesEndpoint = 'mentors';

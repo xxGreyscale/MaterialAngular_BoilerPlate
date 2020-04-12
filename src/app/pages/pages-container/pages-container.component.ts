@@ -1,4 +1,8 @@
+import { RequestsService } from './../../services/request-provider.service';
+import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 export interface NavItem {
   icon: string;
@@ -32,6 +36,7 @@ export class PagesContainerComponent implements OnInit {
       children: [
         {icon: '', title: 'Startups', parents: false,  route: '/dashboard/users/startups'},
         {icon: '', title: 'Mentors', parents: false,  route: '/dashboard/users/mentors'},
+        {icon: '', title: 'Program Admins', parents: false,  route: '/dashboard/users/mentors'},
       ]
     },
     {
@@ -45,6 +50,16 @@ export class PagesContainerComponent implements OnInit {
       ]
     },
     {
+      icon: 'dns',
+      title: 'Program Mgmt',
+      parent: true,
+      children: [
+        { icon: '', title: 'Programs', parent: false, route: '/dashboard/forums/channels'},
+        { icon: '', title: 'Program Applications', parent: false, route: '/dashboard/forums/topics'},
+        { icon: '', title: 'Solutions', parent: false, route: '/dashboard/forums/posts'},
+      ]
+    },
+    {
       icon: 'mail',
       title: 'News & Articles',
       parent: true,
@@ -52,9 +67,35 @@ export class PagesContainerComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private storageService: StorageService,
+              private snackBar: MatSnackBar,
+              private router: Router,
+              private request: RequestsService) { }
 
   ngOnInit() {
+  }
+
+  // custom functions here
+  logout() {
+    this.request.endPoint = `logout`;
+    this.request.post().subscribe(response => {
+      const responseCatcher: any = response;
+
+      // if the logout is success full
+      if(responseCatcher.code === 200){
+        this.storageService.clearTokens();
+        this.snackBar.open('Loging out, Comeback Soon!', 'close', {
+          duration: 2000,
+        });
+        window.setTimeout(()=> {
+          this.router.navigate(['auth']);
+        }, 1000)
+      } else {
+        this.snackBar.open(`${responseCatcher.message}`, 'Undo', {
+          duration: 2000,
+        });
+      }
+    })
   }
 
 }

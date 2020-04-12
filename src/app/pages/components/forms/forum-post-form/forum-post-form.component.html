@@ -1,0 +1,118 @@
+<form action="" [formGroup]="forumPostForm" (submit)="onSubmit()">
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-9 ">
+        <mat-card>
+    
+          <!-- Title -->
+          <div class="form-group">
+              <label for="title"> Title: </label>
+              <mat-form-field appearance="outline" color="primary">
+                  <input matInput 
+                  formControlName="title"
+                  type="text"
+                  placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
+                </mat-form-field>
+            </div>
+
+
+             <!-- Subtitle -->
+          <div class="form-group">
+            <label for="subtitle"> Subtitle: </label>
+            <mat-form-field appearance="outline" color="primary">
+                <input matInput 
+                formControlName="subtitle"
+                type="text"
+                placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
+              </mat-form-field>
+          </div>
+
+           <!-- Topic -->
+           <div class="form-group">
+            <label for="topic"> Topic: </label>
+            <mat-form-field appearance="outline" color="primary">
+                <mat-select  
+                formControlName="topic"
+                placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
+                <mat-option *ngFor="let topic of topics" value="{{topic.value}}">
+                  {{ topic.name }}
+                </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>   
+
+           <!-- channel -->
+           <div class="form-group">
+            <label for="channel"> Channel: </label>
+            <mat-form-field appearance="outline" color="primary">
+                <mat-select  
+                formControlName="channel"
+                placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
+                <mat-option *ngFor="let channel of channels" value="{{channel.value}}">
+                  {{ channel.name }}
+                </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>   
+            
+            <!-- Content -->
+            <div class="form-group">
+              <label for="content"> Content: </label>
+              <mat-form-field appearance="outline" color="primary">
+                  <textarea  matInput
+                  formControlName="content"
+                  cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="3"
+                cdkAutosizeMaxRows="6"
+                  placeholder="Ex. Innovation week 2020: Finteach and ecommerce scaling">
+                  </textarea>
+                </mat-form-field>
+            </div>   
+            
+
+            <!-- Featured? -->
+            <div class="form-group">
+                <mat-checkbox 
+                formControlName='featured'
+                color="primary" 
+                labelPosition='before'>
+                Featured:
+              </mat-checkbox>
+      
+              </div>      
+            
+
+            
+          </mat-card>
+         
+   </div>
+    </div>
+
+    <div class="d-flex flex-row-reverse my-3 my-lg-4">
+        <div>
+          <button mat-button (click)="goBack()" class="ml-lg-1 btn">
+          
+            Cancel
+        </button>
+        
+        <button *ngIf="!forumPostId" mat-flat-button color="primary" (click)="addAnother()" class="ml-lg-2 btn">
+          
+          Add & Create Another
+        </button>
+        
+        <button mat-flat-button color="primary" type="submit" class="ml-lg-2 btn">
+          <div *ngIf="!forumPostId">
+            Add Post
+          </div>
+          <div *ngIf="forumPostId">
+            Update Post
+          </div>
+          
+        </button>
+        </div>
+      </div>
+    
+    
+    
+</form>
+

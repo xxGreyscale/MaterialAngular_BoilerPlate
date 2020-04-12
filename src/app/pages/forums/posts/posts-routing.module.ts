@@ -1,3 +1,4 @@
+import { PostEditPageComponent } from './post-edit-page/post-edit-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PostsContainerComponent } from './posts-container.component';
@@ -11,6 +12,10 @@ const adminPortalRoutes = [
       {
         path: '',
         component: PostsPageComponent,
+      },
+      {
+        path: 'create',
+        component: PostEditPageComponent,
       },
     ]
   }

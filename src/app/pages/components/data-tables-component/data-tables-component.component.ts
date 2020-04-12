@@ -116,7 +116,7 @@ export class DataTablesComponentComponent implements OnInit {
     this.requestService.delete(resource).subscribe(response => {
       const resp: any = response;
       if (resp.message.toString() === 'Success') {
-        this.snackBar.open('Article deleted', 'Undo', {
+        this.snackBar.open(`Deletion ${resp.message.toString()}`, 'close', {
           duration: 2000,
         });
         this.dataSource(this.getResource());

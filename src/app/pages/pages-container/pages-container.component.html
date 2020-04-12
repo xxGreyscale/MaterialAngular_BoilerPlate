@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="app-toolbar shadow">
-    <div class="pl-3 d-inline">
+    <div class="pl-3 d-inline header-box header-logo">
       <button class="d-inline" mat-icon-button (click)="isExpanded = !isExpanded">
         <mat-icon>menu</mat-icon>
         </button>
@@ -15,7 +15,7 @@
           <mat-menu #appMenu="matMenu" yPosition="below" xPosition="after">
             <button mat-menu-item >Profile</button>
             <button mat-menu-item >Edit Profile</button>
-            <button mat-menu-item >Logout</button>
+            <button mat-menu-item (click)='logout()' >Logout</button>
     
           </mat-menu>
         <button mat-icon-button [matMenuTriggerFor]="appMenu">

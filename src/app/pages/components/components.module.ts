@@ -7,10 +7,12 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 import { ChannelFormComponentComponent } from './forms/channel-form-component/channel-form-component.component';
 import { DataTablesComponentComponent } from './data-tables-component/data-tables-component.component';
+import { ForumPostFormComponent } from './forms/forum-post-form/forum-post-form.component';
+import { MentorFormComponent } from './forms/mentor-form/mentor-form.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent, DataTablesComponentComponent],
+  declarations: [HeaderComponent, DataTablesComponentComponent, ForumPostFormComponent, MentorFormComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -19,7 +21,7 @@ import { DataTablesComponentComponent } from './data-tables-component/data-table
     MaterialModule,
   ], 
   exports: [
-    DataTablesComponentComponent, HeaderComponent
+    DataTablesComponentComponent, HeaderComponent, ForumPostFormComponent, MentorFormComponent
   ]
 })
 export class ComponentsModule { }

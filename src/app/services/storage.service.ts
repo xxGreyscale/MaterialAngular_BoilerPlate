@@ -10,6 +10,7 @@ export class StorageService {
   }
 
   saveToken(response) {
+    console.log(response)
     const token = {
       createdAt: new Date().getTime(),
       name: 'id8:auth:jwt:token',
@@ -21,7 +22,7 @@ export class StorageService {
   }
 
   clearTokens() {
-    const tokens = ['user', 'chat_token', 'iframe'];
+    const tokens = ['auth_app_token','user', 'chat_token', 'iframe'];
     for (let i = 0; i < tokens.length; i++) {
       localStorage.removeItem(tokens[i]);
     }

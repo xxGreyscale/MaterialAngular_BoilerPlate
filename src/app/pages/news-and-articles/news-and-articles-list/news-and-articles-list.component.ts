@@ -49,12 +49,12 @@ export class NewsAndArticlesListComponent implements OnInit {
  }
 
  getCategories() {
-   this.requestService.endPoint = 'article-categories'
-   this.requestService.get().subscribe(response=> {
-     let responseCatcher = response;
-     console.log(response);
+  //  this.requestService.endPoint = 'article-categories'
+  //  this.requestService.get().subscribe(response=> {
+  //    let responseCatcher = response;
+  //    console.log(response);
      
-   })
+  //  })
  }
 
 }

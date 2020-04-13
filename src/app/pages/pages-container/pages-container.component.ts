@@ -55,9 +55,9 @@ export class PagesContainerComponent implements OnInit {
       title: 'Program Mgmt',
       parent: true,
       children: [
-        { icon: '', title: 'Programs', parent: false, route: '/dashboard/forums/channels'},
-        { icon: '', title: 'Program Applications', parent: false, route: '/dashboard/forums/topics'},
-        { icon: '', title: 'Solutions', parent: false, route: '/dashboard/forums/posts'},
+        { icon: '', title: 'Programs', parent: false, route: '/dashboard/program-management/programs'},
+        { icon: '', title: 'Program Applications', parent: false, route: '/dashboard/program-management/program-applications'},
+        { icon: '', title: 'Solutions', parent: false, route: '/dashboard/program-management/solutions'},
       ]
     },
     {

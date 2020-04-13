@@ -36,7 +36,8 @@ export class PagesContainerComponent implements OnInit {
       children: [
         {icon: '', title: 'Startups', parents: false,  route: '/dashboard/users/startups'},
         {icon: '', title: 'Mentors', parents: false,  route: '/dashboard/users/mentors'},
-        {icon: '', title: 'Program Admins', parents: false,  route: '/dashboard/users/mentors'},
+        {icon: '', title: 'Program Admins', parents: false,  route: '/dashboard/users/program-admins'},
+        {icon: '', title: 'Id8 Admins', parents: false,  route: '/dashboard/users/id8-admins'},
       ]
     },
     {

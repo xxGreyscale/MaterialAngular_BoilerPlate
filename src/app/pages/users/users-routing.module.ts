@@ -17,6 +17,16 @@ const adminRoutes = [
         path: 'mentors',
         loadChildren: () => import('./mentors/mentors.module')
         .then(m => m.MentorsModule),
+      },
+      {
+        path: 'program-admins',
+        loadChildren: () => import('./program-admins/program-admins.module')
+        .then(m => m.ProgramAdminsModule),
+      },
+      {
+        path: 'id8-admins',
+        loadChildren: () => import('./id8-admins/id8-admins.module')
+        .then(m => m.Id8AdminsModule),
       }
     ]
   }

@@ -6,7 +6,7 @@ import { UserContainerComponent } from './user-container.component';
 
 
 @NgModule({
-  declarations: [UserContainerComponent],
+  declarations: [UserContainerComponent,],
   imports: [
     CommonModule,
     UsersRoutingModule

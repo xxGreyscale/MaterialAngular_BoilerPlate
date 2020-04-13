@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 
 import { MentorsRoutingModule } from './mentors-routing.module';
 import { MentorEditPageComponent } from './mentor-edit-page/mentor-edit-page.component';
+import { MentorViewPageComponent } from './mentor-view-page/mentor-view-page.component';
 
 
 @NgModule({
-  declarations: [MentorsContainerComponent, MentorsPageComponent, MentorEditPageComponent],
+  declarations: [MentorsContainerComponent, MentorsPageComponent, MentorEditPageComponent, MentorViewPageComponent],
   imports: [
     CommonModule,
     ComponentsModule,

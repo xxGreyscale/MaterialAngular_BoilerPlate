@@ -19,7 +19,7 @@ const providers = [
 ];
 
 @NgModule({
-  declarations: [PagesContainerComponent, MenuComponent ],
+  declarations: [PagesContainerComponent ],
   imports: [
     ComponentsModule,
     CommonModule,

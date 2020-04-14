@@ -13,6 +13,12 @@ import { TableService } from './services/table.service';
 import { PageNotFoundComponent } from './miscellaneous/page-not-found/page-not-found.component';
 import { DataTableService } from './services/data-table.service';
 import { MentorsPageComponent } from './pages/users/mentors/mentors-page/mentors-page.component';
+import { InputComponent } from './pages/components/form-components/input/input.component';
+import { ButtonComponent } from './pages/components/form-components/button/button.component';
+import { SelectComponent } from './pages/components/form-components/select/select.component';
+import { DateComponent } from './pages/components/form-components/date/date.component';
+import { RadiobuttonComponent } from './pages/components/form-components/radiobutton/radiobutton.component';
+import { CheckboxComponent } from './pages/components/form-components/checkbox/checkbox.component';
 
 const providers = [
   RequestsService,

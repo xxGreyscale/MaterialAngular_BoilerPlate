@@ -10,6 +10,7 @@ export interface Validator {
     options?: string[];
     collections?: any;
     type: string;
+    buttonType?: string;
     value?: any;
     validations?: Validator[];
   }

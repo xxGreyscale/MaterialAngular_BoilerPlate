@@ -5,8 +5,8 @@ import { FieldConfig } from 'src/app/interfaces/field.interface';
 @Component({
   selector: "app-button",
   template: `
-<div class="demo-full-width margin-top" [formGroup]="group">
-<button type="submit" mat-raised-button color="primary">{{field.label}}</button>
+<div class="d-inline" [formGroup]="group">
+<button type="{{field.buttonType}}" mat-raised-button color="primary">{{field.label}}</button>
 </div>
 `,
   styles: []

@@ -14,13 +14,26 @@ import {
   } from "@angular/forms";
 import { FieldConfig } from 'src/app/interfaces/field.interface';
   
+ // <ng-container *ngFor="let field of fields;" dynamicField [field]="field" [group]="form">
+    // </ng-container>
   @Component({
     exportAs: "dynamicForm",
     selector: "dynamic-form",
     template: `
-    <form class="dynamic-form" [formGroup]="form" (submit)="onSubmit($event)">
-    <ng-container *ngFor="let field of fields;" dynamicField [field]="field" [group]="form">
-    </ng-container>
+    <form class="dynamic-form" [formGroup]="form" (submit)="onSubmit()">
+    <mat-card class="mat-elevation-z2">
+    <div *ngFor="let field of fields;">
+      <ng-container *ngIf="field.type != 'button'" dynamicField [field]="field" [group]="form">
+      </ng-container>
+    </div>
+    </mat-card>
+
+    <div *ngFor="let field of fields;">
+      <div class="my-1 d-flex flex-row-reverse">
+        <ng-container *ngIf="field.type === 'button'" dynamicField [field]="field" [group]="form">
+        </ng-container>
+      </div>
+    </div>
     </form>
     `,
     styles: []
@@ -39,12 +52,18 @@ import { FieldConfig } from 'src/app/interfaces/field.interface';
   
     ngOnInit() {
       this.form = this.createControl();
+      this.fields.forEach(field => {
+        if (field.type != "button"){
+          // set value on updating
+          // this.form.get(field.name).setValue("hello")
+        }
+      })
     }
   
-    onSubmit(event: Event) {
+    onSubmit() {
       event.preventDefault();
       event.stopPropagation();
-      if (this.form.valid) {
+      if (this.form.valid) {     
         this.submit.emit(this.form.value);
       } else {
         this.validateAllFormFields(this.form);
@@ -54,13 +73,14 @@ import { FieldConfig } from 'src/app/interfaces/field.interface';
     createControl() {
       const group = this.fb.group({});
       this.fields.forEach(field => {
-        if (field.type === "button") return;
+        if (field.buttonType === "submit") return;
         const control = this.fb.control(
           field.value,
           this.bindValidations(field.validations || [])
         );
         group.addControl(field.name, control);
       });
+            
       return group;
     }
   

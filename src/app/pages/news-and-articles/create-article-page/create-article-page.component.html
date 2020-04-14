@@ -9,7 +9,15 @@
     </div>
 </section>
 
-<section id="article_details" class="mt-3">
-    <app-create-article-form></app-create-article-form>
+<section *ngIf="pageLoaded && !articleId" id="article_details" class="mt-3">
+    <dynamic-form [fields]="regConfig" (submit)="submit($event)">
+    </dynamic-form>
+</section>
+
+
+
+<section *ngIf="articleId" id="article_details" class="mt-3">
+    <dynamic-form *ngIf="pageLoaded | async" [fields]="regConfig" (submit)="submit($event)">
+    </dynamic-form>
 </section>
 

@@ -1,3 +1,5 @@
+import { FileInputComponent } from './form-components/file-input/file-input.component';
+import { TextAreaComponent } from './form-components/text-area/text-area.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
@@ -17,6 +19,8 @@ import { RadiobuttonComponent } from './form-components/radiobutton/radiobutton.
 import { CheckboxComponent } from './form-components/checkbox/checkbox.component';
 import { DynamicFieldDirective } from './form-components/dynamic-field/dynamic-field.directive';
 import { DynamicFormComponent } from './form-components/dynamic-form/dynamic-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RichContentComponent } from './form-components/rich-content/rich-content.component';
 
 
 @NgModule({
@@ -28,10 +32,14 @@ import { DynamicFormComponent } from './form-components/dynamic-form/dynamic-for
     ButtonComponent,
     SelectComponent,
     DateComponent,
+    TextAreaComponent,
+    FileInputComponent,
     RadiobuttonComponent,
     CheckboxComponent,
+    RichContentComponent,
     DynamicFieldDirective,
-    DynamicFormComponent
+    DynamicFormComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
@@ -51,6 +59,8 @@ import { DynamicFormComponent } from './form-components/dynamic-form/dynamic-for
     DateComponent,
     RadiobuttonComponent,
     CheckboxComponent,
+    RichContentComponent,
+    MenuComponent,
     DynamicFieldDirective,
     DynamicFormComponent
   ],
@@ -60,7 +70,8 @@ import { DynamicFormComponent } from './form-components/dynamic-form/dynamic-for
     SelectComponent,
     DateComponent,
     RadiobuttonComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    RichContentComponent
   ]
 })
 export class ComponentsModule { }

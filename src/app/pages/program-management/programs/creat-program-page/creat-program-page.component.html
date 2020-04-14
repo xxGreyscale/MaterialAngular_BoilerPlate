@@ -1,1 +1,16 @@
-<p>creat-program-page works!</p>
+<section id='article_header' class="mt-3">
+    <div class="flex-container">
+        <div>
+            <h3>
+                Adding a Program
+            </h3>
+        </div>
+        
+    </div>
+</section>
+
+<section id="article_details" class="mt-3"> 
+    <dynamic-form [fields]="regConfig" (submit)="submit($event)">
+    </dynamic-form>
+</section>
+  

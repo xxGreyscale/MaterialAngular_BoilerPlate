@@ -1,3 +1,4 @@
+import { MaterialModule } from 'src/app/material.module';
 import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,7 @@ import { CreatProgramPageComponent } from './creat-program-page/creat-program-pa
   imports: [
     CommonModule,
     ComponentsModule,
+    MaterialModule,
     ProgramsRoutingModule
   ]
 })

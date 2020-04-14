@@ -25,84 +25,77 @@
 </section>
 
 <section *ngIf="article" id="article_details" class="mt-3">
-    <mat-card>
+    <mat-card class="py-0">
+        <div *ngFor="let label of labels | keyvalue">
+            <div *ngFor="let field of article | keyvalue">
+                <div  *ngIf="label.key === field.key">
 
-        <div class="row">
-            <div class="col-7">
+                    <div class="row py-4">
+                        <div class="col-3" >
+                            <label for="">
+                                {{ label.value }}
+                            </label>
+                        </div>
+                        <div class="col-9">
+                            <div *ngIf="field.key === 'category' && field.value">
+                                {{ field.value.name }}
+                            </div>
 
-                <!-- title -->
-                <div class="form-group">
-                    <label for="title"> Title: </label>
-                    <h4 class="font-weight-light">
-                        {{ article.title }}
-                    </h4>
-                  </div>
-                  
-                  <!-- Subtitle -->
-                  <div class="form-group">
-                    <label for="subtitle"> Subtitle: </label>
-                    <p *ngIf="article.subtitle">
-                        {{ article.subtitle }}
-                    </p>
-                    <p *ngIf="!article.subtitle">
-                        -
-                    </p>
-                  </div>     
-                  
-                  <!-- Category -->
-                  <div class="form-group">
-                    <label for="category"> Category: </label>
-                    <p *ngIf="article.category">
-                        {{ article.category }}
-                    </p>
-                    <p *ngIf="!article.category">
-                        -
-                    </p>
-                  </div>   
-                  
-                  <!-- Link -->
-                  <div class="form-group">
-                    <label for="link"> Link: </label>
-                    <p *ngIf="article.link">
-                        {{ article.link }}
-                    </p>
-                    <p *ngIf="!article.link">
-                        -
-                    </p>
-                  </div>   
-                  
-                  
-                   <!-- Content -->
-                   <div class="form-group">
-                    <label for="content"> Content: </label>
-                    <div *ngIf="article.content" [innerHTML]="article.content">
-
+                            <div *ngIf="field.key === 'published'">
+                                <mat-icon *ngIf="field.value" class="text-success mx-auto material-icons-outlined">
+                                    check_circle_outline
+                                  </mat-icon>
+                                  <mat-icon *ngIf="!field.value" class="text-danger mx-auto material-icons-outlined">
+                                    cancel_outline
+                                  </mat-icon>
+                            </div>
+                            <div *ngIf="field.key != 'category' && field.key != 'published'">
+                                {{ field.value }}
+                            </div>
+                            
+                        </div>
                     </div>
-                    <p *ngIf="!article.content">
-                        No available content yet
-                    </p>
-                  </div>     
-            </div>
+                    <mat-divider></mat-divider>
+                </div>
 
-            <div class="col-5">
-                <img src="https://picsum.photos/200" class="rounded w-100 h-50 mt-2" alt="">
-
-                <div class="form-group mt-3">
-                    <label for="content"> Tags: </label>
-                    <mat-chip-list>
-                        <mat-chip color="primary" selected>Papadum</mat-chip>
-                        <mat-chip color="primary" selected>Naan</mat-chip>
-                        <mat-chip color="primary" selected>Dal</mat-chip>
-                      </mat-chip-list>
-                  </div>   
-
-                  <div class="form-group">
-                    <mat-checkbox color="primary" [checked]="article.published" labelPosition='before'>Published:</mat-checkbox>
-
-                  </div>
-                
             </div>
         </div>
+       
+<!-- 
+        <div class="row py-4">
+            <div class="col-3">
+                <label for="">
+                    Subtitle
+                </label>
+            </div>
+            <div class="col-9">
+                <div *ngIf="!article.subtitle">
+                    -
+                </div>
+                <div *ngIf="article.subtitle">
+                    {{article.subtitle}}
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div class="row py-4">
+            <div class="col-3">
+                <label for="">
+                    Subtitle
+                </label>
+            </div>
+            <div class="col-9">
+                <div *ngIf="!article.subtitle">
+                    -
+                </div>
+                <div *ngIf="article.subtitle">
+                    {{article.subtitle}}
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider> -->
     </mat-card>
+
 </section>
 

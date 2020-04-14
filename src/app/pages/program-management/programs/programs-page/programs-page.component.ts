@@ -14,7 +14,7 @@ export class ProgramsPageComponent implements OnInit {
     this.dtService.currentPage = 'programs'
     this.dtService.currentPageTitle = 'Programs'
     this.dtService.createButton = "Create New Program"
-    this.dtService.createButtonUrl = '/dashboard/program-management/create'
+    this.dtService.createButtonUrl = '/dashboard/program-management/programs/create'
     this.dtService.getResourcesEndpoint = 'programs';
     this.dtService.viewResourceUrl = '/dashboard/program-management/program/'
     this.dtService.searchEndpoint = 'posts/search';

@@ -14,6 +14,9 @@ import {
   import { CheckboxComponent } from "../checkbox/checkbox.component";
 import { DateComponent } from '../date/date.component';
 import { FieldConfig } from 'src/app/interfaces/field.interface';
+import { TextAreaComponent } from '../text-area/text-area.component';
+import { FileInputComponent } from '../file-input/file-input.component';
+import { RichContentComponent } from '../rich-content/rich-content.component';
   
   const componentMapper = {
     input: InputComponent,
@@ -21,7 +24,10 @@ import { FieldConfig } from 'src/app/interfaces/field.interface';
     select: SelectComponent,
     date: DateComponent,
     radiobutton: RadiobuttonComponent,
-    checkbox: CheckboxComponent
+    checkbox: CheckboxComponent,
+    textarea: TextAreaComponent,
+    fileinput: FileInputComponent,
+    richContent: RichContentComponent
   };
   @Directive({
     selector: "[dynamicField]"

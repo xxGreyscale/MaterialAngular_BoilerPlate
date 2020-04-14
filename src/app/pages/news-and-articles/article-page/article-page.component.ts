@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ArticlePageComponent implements OnInit {
   articleId: any;
   article: any;
+  labels: any = {'title': 'Title', 'subtitle': 'Subtitle', 'link': 'Link', 'content': 'Content', 'published': 'Published', 'cover_photo': 'Cover Photo', 'category': 'Category' }
 
   constructor(private route: ActivatedRoute,
               private requestService: RequestsService,

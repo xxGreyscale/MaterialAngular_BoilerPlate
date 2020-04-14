@@ -5,9 +5,16 @@ import { FieldConfig } from 'src/app/interfaces/field.interface';
 @Component({
   selector: "app-checkbox",
   template: `
-<div class="demo-full-width margin-top" [formGroup]="group" >
-<mat-checkbox [formControlName]="field.name">{{field.label}}</mat-checkbox>
-</div>
+  <div class="row py-4">
+    <div class="col-3 pl-5">    
+      <label> {{ field.label }} </label>
+    </div>
+    <div class="col-9">
+      <div class="demo-full-width margin-top" [formGroup]="group" >
+      <mat-checkbox [formControlName]="field.name" color="primary"></mat-checkbox>
+      </div>
+    </div>
+  </div>
 `,
   styles: []
 })

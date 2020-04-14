@@ -93,18 +93,29 @@
               </div>
           </div>
 
+          <!-- CHack for channels categories and topics since they are objects -->
           <div *ngIf="columnHeader[tableData] != 'Avatar' ">
-            <div *ngIf="columnHeader[tableData] === 'Category'">
+            <div *ngIf="columnHeader[tableData] === 'Category' && element[tableData]">
              {{ element[tableData].name}}
             </div>
-            <div *ngIf="columnHeader[tableData] === 'Channel'">
+            <div *ngIf="columnHeader[tableData] === 'Category' && !element[tableData]">
+              -
+             </div>
+            <div *ngIf="columnHeader[tableData] === 'Channel' && element[tableData]">
               {{ element[tableData].title}}
              </div>
-             <div *ngIf="columnHeader[tableData] === 'Topic'">
+             <div *ngIf="columnHeader[tableData] === 'Channel' && !element[tableData]">
+              -
+             </div>
+             <div *ngIf="columnHeader[tableData] === 'Topic' && element[tableData]">
               {{ element[tableData].name}}
+             </div>
+             <div *ngIf="columnHeader[tableData] === 'Topic' && !element[tableData]">
+              -
              </div>
           </div>
 
+          <!-- Check if its published or not so as to change icons this is for news & and articles -->
           <div *ngIf="columnHeader[tableData] === 'Published'">
             <mat-icon *ngIf="element[tableData]" class="text-success mx-auto material-icons-outlined">
               check_circle_outline

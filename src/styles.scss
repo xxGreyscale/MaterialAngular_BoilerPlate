@@ -70,6 +70,52 @@ button.btn.action {
     }
 }
 
+label {
+    font-size: 16px;
+    font-weight: 600 !important;
+}
+.mat-form-field {
+    width: 70%;
+}
+
+.mat-form-field-outline {
+    background-color: #f4ffcb;
+    border: 1px solid #000000;
+    border-radius: 5px;
+
+}
+
+.mat-form-field-outline.mat-form-field-outline-thick {
+    background-color: #f8fcec;
+    border: 0px solid #000000;
+    border-radius: 5px;
+
+}
+
+.mat-form-field-outline.mat-form-field-outline-thick:visited {
+    background-color: #ffffff;
+    border: 0px solid #000000;
+    border-radius: 5px;
+
+}
+
+
+form {
+    .mat-checkbox-inner-container.mat-checkbox-inner-container-no-side-margin {
+        width: 80px !important;
+        height: 80px !important;
+    }
+}
+
+.ql-container {
+    width: 70%;
+    height: 250px;
+    background-color: #f4ffcb;
+}
+
+.ql-toolbar {
+    width: 70%;
+}
 
 .color-indication {
     padding: 0.6rem;

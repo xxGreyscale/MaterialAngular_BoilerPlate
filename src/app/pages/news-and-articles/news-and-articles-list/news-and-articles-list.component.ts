@@ -29,6 +29,7 @@ export class NewsAndArticlesListComponent implements OnInit {
     this.dtService.currentPageTitle = 'News & Articles'
     this.dtService.createButton = "Post Article"
     this.dtService.createButtonUrl = '/dashboard/news-and-articles/create'
+    this.dtService.editResourceUrl = '/dashboard/news-and-articles/editing-article/'
     this.dtService.getResourcesEndpoint = 'posts';
     this.dtService.viewResourceUrl = '/dashboard/news-and-articles/article/'
     this.dtService.searchEndpoint = 'posts/search';

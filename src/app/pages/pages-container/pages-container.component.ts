@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { menu } from '../menu';
 
 export interface NavItem {
   icon: string;
@@ -22,51 +23,7 @@ export class PagesContainerComponent implements OnInit {
   isExpanded = true;
   primary = 'primary';
   
-  menuList = [
-    {
-      icon: 'home',
-      title: 'Home',
-      parent: true,
-      route: ''
-    },
-    {
-      icon: 'person',
-      title: 'Users',
-      parent: true,
-      children: [
-        {icon: '', title: 'Startups', parents: false,  route: '/dashboard/users/startups'},
-        {icon: '', title: 'Mentors', parents: false,  route: '/dashboard/users/mentors'},
-        {icon: '', title: 'Program Admins', parents: false,  route: '/dashboard/users/program-admins'},
-        {icon: '', title: 'Id8 Admins', parents: false,  route: '/dashboard/users/id8-admins'},
-      ]
-    },
-    {
-      icon: 'forum',
-      title: 'Forums',
-      parent: true,
-      children: [
-        { icon: '', title: 'Channels', parent: false, route: '/dashboard/forums/channels'},
-        { icon: '', title: 'Topics', parent: false, route: '/dashboard/forums/topics'},
-        { icon: '', title: 'Posts', parent: false, route: '/dashboard/forums/posts'},
-      ]
-    },
-    {
-      icon: 'dns',
-      title: 'Program Mgmt',
-      parent: true,
-      children: [
-        { icon: '', title: 'Programs', parent: false, route: '/dashboard/program-management/programs'},
-        { icon: '', title: 'Program Applications', parent: false, route: '/dashboard/program-management/program-applications'},
-        { icon: '', title: 'Solutions', parent: false, route: '/dashboard/program-management/solutions'},
-      ]
-    },
-    {
-      icon: 'mail',
-      title: 'News & Articles',
-      parent: true,
-      route: '/dashboard/news-and-articles'
-    },
-  ];
+  menuList = menu.list;
 
   constructor(private storageService: StorageService,
               private snackBar: MatSnackBar,
